@@ -27,8 +27,8 @@ public abstract class Piece : EventTrigger
         gameObject.SetActive(false);
     }
 
+    // Checks that the user's move is valid. Ensure that there are no pieces inbetween that inhibits movement and that it is not sharing a spot with a friendly piece.
     public abstract bool hasMove(Cell start, Cell end);
-    // Start is called before the first frame update
 
     public override void OnEndDrag(PointerEventData eventData)
     {
