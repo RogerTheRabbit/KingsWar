@@ -27,7 +27,7 @@ public class Rook : Piece
         int y = start.mBoardPosition.y - end.mBoardPosition.y;
 
         if (y == 0) {
-            int[] range = Utilities.findRange(start.mBoardPosition.x, end.mBoardPosition.x);
+            int[] range = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
             foreach(int i in range){
                 if (matrixboard[x,i].currentPiece != null) {
                     return false;
@@ -36,7 +36,7 @@ public class Rook : Piece
         }
 
         if (x == 0) {
-            int[] range = Utilities.findRange(start.mBoardPosition.y, end.mBoardPosition.y);
+            int[] range = Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y);
             foreach(int i in range){
                 if (matrixboard[i,y].currentPiece != null) {
                     return false;
