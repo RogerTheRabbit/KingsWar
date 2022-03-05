@@ -1,7 +1,25 @@
 fileFormatVersion: 2
 guid: b2b47f5f3b699024e85a8781c1d7c0ed
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5337390094347734064
+    second: Black - Plastic 1 128x128_0
+  - first:
+      213: -4579322247765879941
+    second: Black - Plastic 1 128x128_1
+  - first:
+      213: -4633479856080609569
+    second: Black - Plastic 1 128x128_2
+  - first:
+      213: 513147471919768164
+    second: Black - Plastic 1 128x128_3
+  - first:
+      213: 8065639978634563372
+    second: Black - Plastic 1 128x128_4
+  - first:
+      213: 2564120535976642240
+    second: Black - Plastic 1 128x128_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +59,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +93,147 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Black - Plastic 1 128x128_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 402
+        width: 85
+        height: 85
+      alignment: 9
+      pivot: {x: 0.46638036, y: 0.5000007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d3f6b6ecf7cde5b0800000000000000
+      internalID: -5337390094347734064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black - Plastic 1 128x128_1
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 142
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b731fdd8daaf270c0800000000000000
+      internalID: -4579322247765879941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black - Plastic 1 128x128_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 269
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fde1360ce9292bfb0800000000000000
+      internalID: -4633479856080609569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black - Plastic 1 128x128_3
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 146
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 462ea2d28e01f1700800000000000000
+      internalID: 513147471919768164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black - Plastic 1 128x128_4
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 15
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fc3b4b3d8eeef60800000000000000
+      internalID: 8065639978634563372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Black - Plastic 1 128x128_5
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 142
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c60c2cca06959320800000000000000
+      internalID: 2564120535976642240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
