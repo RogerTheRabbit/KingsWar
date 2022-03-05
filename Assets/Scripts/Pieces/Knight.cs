@@ -16,6 +16,7 @@ public class Knight : Piece
             if (s.name == "Black - Plastic 1 128x128_2")
             {
                 GetComponent<Image>().sprite = s;
+                break;
             }
         }
     }

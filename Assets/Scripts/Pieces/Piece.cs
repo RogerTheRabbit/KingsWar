@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public abstract class Piece : EventTrigger
 {
@@ -14,6 +15,9 @@ public abstract class Piece : EventTrigger
 
     public virtual void init(PieceManager pieceManager, bool white)
     {
+
+        GetComponent<Image>().color = Color.black;
+
         this.pieceManager = pieceManager;
         this.white = white;
     }
