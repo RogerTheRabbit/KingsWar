@@ -21,9 +21,29 @@ public class Rook : Piece
             return false;
         }
 
-        bool x = start.mBoardPosition.x - end.mBoardPosition.x == 0;
-        bool y = start.mBoardPosition.y - end.mBoardPosition.y == 0;
-        return (x && !y) || (!x && y);
+        Cell[,] matrixboard = start.mBoard.mAllCells;
+
+        int x = start.mBoardPosition.x - end.mBoardPosition.x;
+        int y = start.mBoardPosition.y - end.mBoardPosition.y;
+
+        if (y == 0) {
+            int[] range = Utilities.findRange(start.mBoardPosition.x, end.mBoardPosition.x);
+            foreach(int i in range){
+                if (matrixboard[x,i].currentPiece != null) {
+                    return false;
+                }
+            }
+        }
+
+        if (x == 0) {
+            int[] range = Utilities.findRange(start.mBoardPosition.y, end.mBoardPosition.y);
+            foreach(int i in range){
+                if (matrixboard[i,y].currentPiece != null) {
+                    return false;
+                }
+            }
+        }
+        return (x == 0 && y != 0) || (x != 0 && y == 0);
     }
     void Start()
     {
