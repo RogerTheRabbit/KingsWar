@@ -91,6 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5829684251482824123}
+  - component: {fileID: 563699920979903525}
   m_Layer: 0
   m_Name: PR_Board
   m_TagString: Untagged
@@ -113,3 +114,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &563699920979903525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4001458606711970417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdda6c0cd7b9064191f214d147da52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mCellPrefab: {fileID: 6648460554859045979, guid: 22e934f57a3bf674889a05e26d405486, type: 3}
