@@ -19,12 +19,12 @@ public class Bishop : Piece
             return false;
         }
 
-        Cell[] matrixboard = start.mBoard.mAllCells;
+        Cell[,] matrixboard = start.mBoard.mAllCells;
 
         int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
         int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
         for (int i = Mathf.Abs(start.mBoardPosition.x) + 1; i < x; i ++) {
-        	if(matrixboard[i][i].currentPiece != Null) {
+        	if(matrixboard[i,i].currentPiece != null) {
         		return false;
         	} 
         }
