@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Utilities : MonoBehaviour
 {
-    public static int[] findRange(int start, int end) {
+    public static int[] getRangeExclusive(int start, int end) {
         int[] output;
         if  (start < end) {
-            output = new int[end - start];
-            for(int i = start; i < end; i ++) {
-                output[i - start] = i;
+            output = new int[end - start - 1];
+            for(int i = start + 1; i < end; i ++) {
+                output[i - start - 1] = i;
             }
         } else {
-            output = new int[start - end];
-            for(int i = end; i < start; i ++) {
-                output[i - end] = i;
+            output = new int[start - end - 1];
+            for(int i = end + 1; i < start; i ++) {
+                output[i - end - 1] = i;
             }
         }
         return output;
