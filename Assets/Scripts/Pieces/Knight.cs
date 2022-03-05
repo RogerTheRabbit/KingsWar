@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Knight : Piece
 {
@@ -9,6 +10,14 @@ public class Knight : Piece
     public override void init(PieceManager pieceManager, bool white)
     {
         base.init(pieceManager, white);
+        Sprite[] all = Resources.LoadAll<Sprite>("\\Pieces\\Black\\Black - Plastic 1 128x128.png");
+        foreach (var s in all)
+        {
+            if (s.name == "Black - Plastic 1 128x128_2")
+            {
+                GetComponent<Image>().sprite = s;
+            }
+        }
     }
 
     public override bool hasMove(Cell start, Cell end)

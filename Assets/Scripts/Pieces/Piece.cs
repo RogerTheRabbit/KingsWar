@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public abstract class Piece : EventTrigger
 {
 
-    public Cell startCell;
-    public Cell endCell;
+    public Cell startCell = null;
+    public Cell endCell = null;
     public PieceManager pieceManager = null;
     public bool white = false;
     public bool killed = false;
@@ -23,8 +23,9 @@ public abstract class Piece : EventTrigger
         startCell = cell;
         endCell = cell;
         //TODO set cells piece to this
+        startCell.currentPiece = this;
         transform.position = cell.transform.position;
-        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 
     // Checks that the user's move is valid. Ensure that there are no pieces inbetween that inhibits movement and that it is not sharing a spot with a friendly piece.
