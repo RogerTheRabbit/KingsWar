@@ -27,7 +27,9 @@ public class Bishop : Piece
 
         int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
         int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
-        for (int i = Mathf.Abs(start.mBoardPosition.x) + 1; i < x; i ++) {
+
+        int[] range = Utilities.findRange(start.mBoardPosition.x, end.mBoardPosition.x);
+        foreach(int i in range) {
         	if(matrixboard[i,i].currentPiece != null) {
         		return false;
         	} 
