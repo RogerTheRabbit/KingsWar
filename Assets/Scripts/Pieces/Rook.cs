@@ -16,6 +16,11 @@ public class Rook : Piece
             return false;
         }
 
+        // Not a valid move if the piece doesn't move.
+        if(start.mBoardPosition.x - end.mBoardPosition.x == 0 && start.mBoardPosition.y - end.mBoardPosition.y == 0) {
+            return false;
+        }
+
         bool x = start.mBoardPosition.x - end.mBoardPosition.x == 0;
         bool y = start.mBoardPosition.y - end.mBoardPosition.y == 0;
         return (x && !y) || (!x && y);

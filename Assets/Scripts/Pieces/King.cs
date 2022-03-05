@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Queen : Piece
+public class King : Piece
 {
     // Start is called before the first frame update
 
@@ -21,9 +23,12 @@ public class Queen : Piece
             return false;
         }
 
-        bool x = start.mBoardPosition.x - end.mBoardPosition.x == 0;
-        bool y = start.mBoardPosition.y - end.mBoardPosition.y == 0;
-        return (x && !y) || (!x && y) || (x == y);
+        int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
+        int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
+        if(x > 1 || y > 1) {
+            return false;
+        }
+        return (x == 0 && y != 0) || (x != 0 && y == 0) || (x == 0 && y == 0);
     }
     void Start()
     {
