@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         board.Create();
-        // pieceManager.Setup()
+        pieceManager.Setup(board);
     }
 
     // Update is called once per frame
