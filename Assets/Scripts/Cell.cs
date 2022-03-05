@@ -14,6 +14,16 @@ public class Cell : MonoBehaviour
     public Board mBoard = null;
     public RectTransform mRectTransform = null;
 
+    public Piece currentPiece = null;
+
+    public void RemovePiece()
+    {
+        if (currentPiece != null)
+        {
+            currentPiece.Kill();
+        }
+    }
+
 
     public void Setup(Vector2Int newBoardPosition, Board newBoard)
     {
