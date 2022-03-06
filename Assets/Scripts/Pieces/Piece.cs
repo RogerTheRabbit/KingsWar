@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System;
 using System.Collections.Generic;
+using System.Timers;
 
 public abstract class Piece : EventTrigger
 {
@@ -28,6 +29,8 @@ public abstract class Piece : EventTrigger
 
     public bool frozenState;
     public bool airRageMove = false;
+
+    GameObject viewEffects = null;
 
     public virtual void init(TurnManager turnManager, bool white, PieceManager pieceManager)
 
@@ -101,7 +104,38 @@ public abstract class Piece : EventTrigger
         airRage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         airRage.SetActive(false);
 
+        viewEffects = new GameObject("viewEffects");
+        viewEffects.transform.SetParent(this.transform);
+        viewEffects.transform.localPosition = new Vector3(-0.285899997f, 19.7418995f, 0);
+        Image viewEffectsImage = viewEffects.AddComponent<Image>();
+        viewEffectsImage.color = Color.cyan;
+        viewEffectsImage.GetComponent<RectTransform>().sizeDelta = new Vector2(53, 29);
+        viewEffects.SetActive(true);
+
+        activeBuffs.Add(new HolyProtectionBuff());
+        activeBuffs.Add(new AddStatBuff());
+
+        GameObject viewEffectsTextBox = new GameObject("ViewEffectsText");
+        viewEffectsTextBox.transform.SetParent(viewEffects.transform);
+        viewEffectsTextBox.transform.localPosition = new Vector3(0f, 0f, 0f);
+        Text viewEffectsText = viewEffectsTextBox.AddComponent<Text>();
+        viewEffectsText.text = String.Join(", ",activeBuffs.ConvertAll<String>(b => EffectMap[b.GetType()]));
+        viewEffectsText.alignment = TextAnchor.MiddleCenter;
+        viewEffectsText.color = Color.black;
+        viewEffectsText.fontSize = 30;
+        viewEffectsText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+        viewEffectsTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        viewEffectsTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(530, 290);
+
     }
+
+    public Dictionary<Type, String> EffectMap = new Dictionary<Type, String>()
+    {
+        {typeof(AddStatBuff), "Added Stats"},
+        {typeof(AirRageBuff), "Air Rage"},
+        {typeof(HolyProtectionBuff), "Holy Protection"},
+        {typeof(IceDeBuff), "Frozen"},
+    };
 
     public virtual void updateHealth()
     {
@@ -231,6 +265,20 @@ public abstract class Piece : EventTrigger
 
         // Follow pointer
         transform.position += (Vector3)eventData.delta;
+    }
+
+	public override void OnPointerEnter(PointerEventData eventData)
+	{
+		base.OnPointerEnter(eventData);
+
+        viewEffects.SetActive(true);
+	}
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+
+        viewEffects.SetActive(false);
     }
 
     protected virtual void action()
