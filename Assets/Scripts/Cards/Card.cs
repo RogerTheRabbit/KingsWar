@@ -19,16 +19,23 @@ public abstract class Card : EventTrigger
         this.turnManager = turnmanager;
         this.white = white;
 
+        GameObject manaPanel = new GameObject("manaPanel");
+        manaPanel.transform.SetParent(this.transform);
+        manaPanel.transform.localPosition = new Vector3(-2.4f, 3.18f, 0);
+        Image manaImage = manaPanel.AddComponent<Image>();
+        manaImage.color = Color.blue;
+        manaPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(25, 25);
+
         GameObject manaTextBox = new GameObject("manaCost");
-        manaTextBox.transform.SetParent(this.transform);
-        manaTextBox.transform.localPosition = new Vector3(50f, -42.9000015f, 0f);
+        manaTextBox.transform.SetParent(manaPanel.transform);
+        manaTextBox.transform.localPosition = new Vector3(-2.5f, 3, 0);
         Text manaText = manaTextBox.AddComponent<Text>();
         manaText.text = manaCost.ToString();
         manaText.color = Color.white;
         manaText.fontSize = 120;
         manaText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         manaTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        manaTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150);
+        manaTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
 
     }
 
