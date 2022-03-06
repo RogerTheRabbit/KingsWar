@@ -11,7 +11,6 @@ public class SummonBishop : Summon
 
     public override bool playCard(Cell pieceLocation)
     {
-        //TODO Also check that the cell is not in the back 2 ranks once turnmanager is done
         if (pieceLocation.currentPiece == null && base.canPlayCard(this))
         {
             if (this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y > 1) {
