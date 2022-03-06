@@ -12,6 +12,8 @@ public class TurnManager : MonoBehaviour
     void Create(PieceManager pieceManager)
     {
         this.pieceManager = pieceManager;
+        player1 = new Player();
+        player2 = new Player();
     }
 
     // Start is called before the first frame update
