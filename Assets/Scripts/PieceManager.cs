@@ -93,6 +93,13 @@ public class PieceManager : MonoBehaviour
 
         return newPiece;
     }
+
+    //for the player when they play a card
+    public Cell getCell()
+    {
+        return null;
+    }
+
     void Start()
     {
         
