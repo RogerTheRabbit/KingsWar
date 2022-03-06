@@ -16,7 +16,8 @@ public abstract class Piece : EventTrigger
     public virtual void init(PieceManager pieceManager, bool white)
     {
 
-        GetComponent<Image>().color = Color.black;
+        GetComponent<Image>().color = Color.clear;
+        gameObject.layer = 5;
 
         this.pieceManager = pieceManager;
         this.white = white;
@@ -29,6 +30,7 @@ public abstract class Piece : EventTrigger
         //TODO set cells piece to this
         startCell.currentPiece = this;
         transform.position = cell.transform.position;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 70);
         gameObject.SetActive(true);
     }
 
