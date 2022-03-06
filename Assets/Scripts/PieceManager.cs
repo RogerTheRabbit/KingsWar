@@ -21,6 +21,26 @@ public class PieceManager : MonoBehaviour
         {"Q",  typeof(Queen)}
     };
 
+    private Dictionary<Type, int> pieceHealth = new Dictionary<Type, int>()
+    {
+        {typeof(Pawn), 1},
+        {typeof(Rook), 5},
+        {typeof(Knight), 3},
+        {typeof(Bishop), 3},
+        {typeof(King), 20},
+        {typeof(Queen), 9}
+    };
+
+    private Dictionary<Type, int> pieceAttack = new Dictionary<Type, int>()
+    {
+        {typeof(Pawn), 1},
+        {typeof(Rook), 5},
+        {typeof(Knight), 3},
+        {typeof(Bishop), 3},
+        {typeof(King), 20},
+        {typeof(Queen), 9}
+    };
+
 
 
     private string[] pieceOrder = new string[16]
@@ -91,6 +111,8 @@ public class PieceManager : MonoBehaviour
 
         // Store new piece
         Piece newPiece = (Piece)newPieceObject.AddComponent(pieceType);
+        newPiece.health = pieceHealth[pieceType];
+        newPiece.attack = pieceAttack[pieceType];
 
         return newPiece;
     }
