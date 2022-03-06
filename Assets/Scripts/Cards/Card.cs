@@ -7,7 +7,7 @@ public abstract class Card : EventTrigger
 {
     public int manaCost;
 
-    private TurnManager turnManager;
+    public TurnManager turnManager;
     private Cell targetCell;
     public bool white = false;
 

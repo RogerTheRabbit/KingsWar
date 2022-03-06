@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     static int maxMana = 12;
     static int maxHandSize = 10;
-    int playerMana;
+    public int playerMana;
     TurnManager turnManager;
     List<Card> cards;
     GameObject cardPrefab;
