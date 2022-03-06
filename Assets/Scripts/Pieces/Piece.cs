@@ -14,7 +14,7 @@ public abstract class Piece : EventTrigger
     public Cell endCell = null;
     public Cell targetCell = null;
     public TurnManager turnManager = null;
-    public bool white = false;
+    public bool white;
     public bool killed = false;
 
     public virtual void init(TurnManager turnManager, bool white)
@@ -84,6 +84,11 @@ public abstract class Piece : EventTrigger
 
     // Checks that the user's move is valid. Ensure that there are no pieces inbetween that inhibits movement and that it is not sharing a spot with a friendly piece.
     public virtual bool hasMove(Cell start, Cell end) {
+
+        if(turnManager.isWhiteTurn == white) {
+            return false;
+        }
+
         if (end == null || start == null) {
             return false;
         }

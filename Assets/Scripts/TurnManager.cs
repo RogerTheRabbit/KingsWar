@@ -25,7 +25,7 @@ public class TurnManager : MonoBehaviour
         blackPlayer.drawRandomCard();
     }
 
-    void turnStart()
+    public void turnStart()
     {
         hasMoved = false;
         if (isWhiteTurn)
@@ -38,7 +38,7 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    void endTurn()
+    public void endTurn()
     {
         isWhiteTurn = !isWhiteTurn;
     }
