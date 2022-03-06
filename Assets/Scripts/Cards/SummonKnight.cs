@@ -13,7 +13,7 @@ public class SummonKnight : Summon
                 Piece knight = this.pieceManager.CreatePiece(typeof(Knight));
                 knight.init(turnManager, white, this.pieceManager);
                 knight.place(pieceLocation);
-                this.useMana();
+                base.spendMana();
                 return true;
             }
             else if (!this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y < 6) {
