@@ -8,7 +8,7 @@ public class SummonRook : Summon
     public override bool playCard(Cell pieceLocation)
     {
         //TODO Also check that the cell is not in the back 2 ranks once turnmanager is done
-        if (pieceLocation.currentPiece == null)
+        if (pieceLocation.currentPiece == null && base.canPlayCard(this))
         {
             Piece rook = this.pieceManager.CreatePiece(typeof(Rook));
             rook.init(turnManager, white, this.pieceManager);

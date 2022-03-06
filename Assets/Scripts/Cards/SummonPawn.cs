@@ -6,7 +6,7 @@ public class SummonPawn : Summon
 {
     public override bool playCard(Cell pieceLocation)
     {
-        if (pieceLocation.currentPiece == null)
+        if (pieceLocation.currentPiece == null && base.canPlayCard(this))
         {
             if (this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y < 6) {
                 Piece pawn = this.pieceManager.CreatePiece(typeof(Pawn));

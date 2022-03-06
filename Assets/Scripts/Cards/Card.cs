@@ -41,6 +41,11 @@ public abstract class Card : EventTrigger
 
     }
 
+    public bool canPlayCard(Card card)
+    {
+        return turnManager.canPlayCard(card);
+    }
+
     public abstract bool playCard(Cell pieceLocation);
     public abstract void useMana();
 

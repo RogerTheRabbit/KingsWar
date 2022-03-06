@@ -12,7 +12,7 @@ public class SummonBishop : Summon
     public override bool playCard(Cell pieceLocation)
     {
         //TODO Also check that the cell is not in the back 2 ranks once turnmanager is done
-        if (pieceLocation.currentPiece == null)
+        if (pieceLocation.currentPiece == null && base.canPlayCard(this))
         {
             Piece bishop = this.pieceManager.CreatePiece(typeof(Bishop));
             bishop.init(turnManager, white, this.pieceManager);
