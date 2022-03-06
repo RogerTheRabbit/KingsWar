@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
+using System.Collections.Generic;
 
 public abstract class Piece : EventTrigger
 {
@@ -21,6 +23,29 @@ public abstract class Piece : EventTrigger
 
         this.turnmanager = turnmanager;
         this.white = white;
+
+        GameObject healthTextBox = new GameObject("health");
+        healthTextBox.transform.SetParent(this.transform);
+        healthTextBox.transform.localPosition = new Vector3(50f, -42.9000015f, 0f);
+        Text healthText = healthTextBox.AddComponent<Text>();
+        healthText.text = health.ToString();
+        healthText.color = Color.white;
+        healthText.fontSize = 120;
+        healthText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+        healthTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        healthTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150);
+
+        GameObject attackTextBox = new GameObject("health");
+        attackTextBox.transform.SetParent(this.transform);
+        attackTextBox.transform.localPosition = new Vector3(-36.5f, -42.9000015f, 0f);
+        Text attackText = attackTextBox.AddComponent<Text>();
+        attackText.text = health.ToString();
+        attackText.color = Color.white;
+        attackText.fontSize = 120;
+        attackText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+        attackTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        attackTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150);
+
     }
 
     public virtual void place(Cell cell)
