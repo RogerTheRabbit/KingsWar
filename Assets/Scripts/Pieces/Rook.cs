@@ -8,10 +8,22 @@ public class Rook : Piece
     public override void init(PieceManager pieceManager, bool white)
     {
         base.init(pieceManager, white);
-        Sprite[] all = Resources.LoadAll<Sprite>("Pieces/Black/");
+        string resourcePath = null;
+        string resourceName = null;
+        if (white)
+        {
+            resourcePath = "Pieces/White/";
+            resourceName = "Plastic 1 128x128_5";
+        }
+        else
+        {
+            resourcePath = "Pieces/Black/";
+            resourceName = "Plastic 1 128x128_5";
+        }
+        Sprite[] all = Resources.LoadAll<Sprite>(resourcePath);
         foreach (var s in all)
         {
-            if (s.name.Contains("Black - Plastic 1 128x128_5"))
+            if (s.name.Contains(resourceName))
             {
                 GetComponent<Image>().sprite = s;
                 GetComponent<Image>().color = new Color(255, 255, 255, 255);

@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 public abstract class Piece : EventTrigger
 {
-
+    public int attack;
+    public int health;
+    
     public Cell startCell = null;
     public Cell endCell = null;
     public Cell targetCell = null;
