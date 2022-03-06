@@ -43,9 +43,14 @@ public abstract class Piece : EventTrigger
         base.OnEndDrag(eventData);
 
 
-        if (this.hasMove(startCell, endCell))
+        if (this.hasMove(startCell, targetCell))
         {
             Move();
+        }
+        else
+        {
+            transform.position = startCell.gameObject.transform.position;
+            return;
         }
         
 
@@ -63,18 +68,21 @@ public abstract class Piece : EventTrigger
         foreach (Cell cell in startCell.mBoard.mAllCells) {
             if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
             {
+                Debug.Log("HERE");
                 // If the mouse is within a valid cell, get it, and break.
                 targetCell = cell;
+                break;
             }
+            // If the mouse is not within any highlighted cell, we don't have a valid move.
+            targetCell = null;
         }
 
-        // If the mouse is not within any highlighted cell, we don't have a valid move.
-        targetCell = null;
+        
     }
 
     protected virtual void Move()
     {
-
+        Debug.Log(targetCell);
         // If there is an enemy piece, remove it
         targetCell.RemovePiece();
 

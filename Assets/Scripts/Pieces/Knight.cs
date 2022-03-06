@@ -25,7 +25,14 @@ public class Knight : Piece
 
     public override bool hasMove(Cell start, Cell end)
     {
-        return true;
+        if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
+        {
+            return false;
+        }
+
+        int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
+        int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
+        return x * y == 2;
     }
     void Start()
     {
