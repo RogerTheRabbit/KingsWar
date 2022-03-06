@@ -97,9 +97,15 @@ public abstract class Card : EventTrigger
         }
 
 
-        if (targetCell != null)
+        if (targetCell != null && playCard(targetCell))
         {
-            playCard(targetCell);
+            Player tempPlayer = white ? turnManager.whitePlayer : turnManager.blackPlayer;
+            foreach(Card card in tempPlayer.cards) {
+                if (card == this) {
+                    gameObject.SetActive(false);
+                    Object.Destroy(this);
+                }
+            }
         }
 
 
