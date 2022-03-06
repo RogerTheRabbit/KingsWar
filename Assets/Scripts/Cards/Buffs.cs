@@ -5,10 +5,10 @@ using UnityEngine;
 public class Buffs : Card
 {
 
-    public override bool playCard(TurnManager turnManager, Cell pieceLocation) {
+    public override bool playCard(Cell pieceLocation) {
         return false;
     }
-    public override void useMana(TurnManager turnManager){
+    public override void useMana(){
 
     }
     // Start is called before the first frame update
