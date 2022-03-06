@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
         // Store new piece
         Card newCard = (Card)newCardObject.AddComponent(cardLibrary["SB"]);
+        newCard.init(turnManager, isWhite);
         cards.Add(newCard);
         
     }
