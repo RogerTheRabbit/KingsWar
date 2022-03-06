@@ -25,6 +25,8 @@ public abstract class Piece : EventTrigger
     GameObject shield = null;
     GameObject airRage = null;
 
+    public bool airRageMove = false;
+
     public virtual void init(TurnManager turnManager, bool white, PieceManager pieceManager)
 
     {
@@ -79,9 +81,7 @@ public abstract class Piece : EventTrigger
         shieldImage.sprite = Resources.Load<Sprite>("Circle") as Sprite;
         shieldImage.color = new Color(1f, 0.92f, 0.016f, 0.3f);
         shield.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        shield.SetActive(true);
-
-        activeBuffs.Add(new HolyProtectionBuff());
+        shield.SetActive(false);
 
         airRage = new GameObject("airRage");
         airRage.transform.SetParent(this.transform);
@@ -89,7 +89,7 @@ public abstract class Piece : EventTrigger
         airRageImage.sprite = Resources.Load<Sprite>("Air-Rage") as Sprite;
         airRageImage.color = new Color(1f, 1f, 1f, 0.4f);
         airRage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        airRage.SetActive(true);
+        airRage.SetActive(false);
 
     }
 
@@ -116,11 +116,13 @@ public abstract class Piece : EventTrigger
 
         if (activeBuffs.Exists(b => b.GetType().Equals(typeof(AirRageBuff))))
         {
-            shield.SetActive(true);
+            airRageMove = true;
+            airRage.SetActive(true);
         }
         else
         {
-            shield.SetActive(false);
+            airRageMove = false;
+            airRage.SetActive(false);
         }
     }
 
@@ -258,7 +260,16 @@ public abstract class Piece : EventTrigger
                 transform.position = startCell.gameObject.transform.position;
             }
         }
-        turnManager.hasMoved = true;
+        if (airRageMove)
+        {
+            airRageMove = false;
+        }
+        else
+        {
+            turnManager.hasMoved = true;
+            airRageMove = true;
+        }
+        
     }
 
     protected virtual void Move()
