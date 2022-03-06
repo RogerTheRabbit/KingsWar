@@ -13,7 +13,7 @@ public class AirRageBuff : Buffs
     public override bool playCard(Cell pieceLocation)
     {
         Piece piece = pieceLocation.currentPiece;
-        if (piece == null)
+        if (piece == null || !base.canPlayCard(this))
         {
             return false;
         }

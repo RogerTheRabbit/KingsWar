@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     bool isWhite;
     TurnManager turnManager;
     public PieceManager pieceManager;
-    List<Card> cards;
+    HashSet<Card> cards;
     GameObject cardPrefab;
 
     private Dictionary<string, Type> cardLibrary = new Dictionary<string, Type>()
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         this.turnManager = turnManager;
         this.cardPrefab = cardPrefab;
         this.pieceManager = pieceManager;
-        cards = new List<Card>();
+        cards = new HashSet<Card>();
         this.isWhite = isWhite;
     }
 

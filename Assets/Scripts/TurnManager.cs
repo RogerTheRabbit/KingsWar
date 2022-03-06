@@ -50,6 +50,41 @@ public class TurnManager : MonoBehaviour
         turnStart();
     }
 
+    public void spendMana(int mana)
+    {
+        if (isWhiteTurn)
+        {
+            whitePlayer.playerCurrentMana -= mana;
+        }
+        else
+        {
+            blackPlayer.playerCurrentMana -= mana;
+        }
+
+    }
+
+    public bool canPlayCard(Card card)
+    {
+        if (isWhiteTurn != card.white)
+        {
+            return false;
+        }
+
+        Player currentPlayer = blackPlayer;
+
+        if (isWhiteTurn)
+        {
+            currentPlayer = whitePlayer;
+        }
+
+        if (card.manaCost > currentPlayer.playerCurrentMana)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public void unFreeze()
     {
         foreach (Cell cell in board.mAllCells)
