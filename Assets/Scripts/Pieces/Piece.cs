@@ -85,13 +85,13 @@ public abstract class Piece : EventTrigger
         shield.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         shield.SetActive(false);
 
-        frozen = new GameObject("shield");
+        frozen = new GameObject("frozen");
         frozen.transform.SetParent(this.transform);
         Image frozenImage = frozen.AddComponent<Image>();
         frozenImage.sprite = Resources.Load<Sprite>("Circle") as Sprite;
-        frozenImage.color = new Color(1f, 0.92f, 0.016f, 0.3f);
+        frozenImage.color = new Color(0f, 0.92f, 1f, 0.3f);
         frozen.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        frozen.SetActive(true);
+        frozen.SetActive(false);
 
         airRage = new GameObject("airRage");
         airRage.transform.SetParent(this.transform);
