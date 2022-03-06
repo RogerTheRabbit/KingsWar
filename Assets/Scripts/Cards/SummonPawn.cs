@@ -29,9 +29,9 @@ public class SummonPawn : Summon
     public override void useMana()
     {
         if(this.turnManager.isWhiteTurn) {
-            this.turnManager.whitePlayer.playerMana -= 1;
+            this.turnManager.whitePlayer.playerCurrentMana -= 1;
         } else {
-            this.turnManager.blackPlayer.playerMana -= 1;
+            this.turnManager.blackPlayer.playerCurrentMana -= 1;
         }
     }
 
