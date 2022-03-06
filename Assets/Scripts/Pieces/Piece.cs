@@ -112,7 +112,7 @@ public abstract class Piece : EventTrigger
         viewEffectsImage.GetComponent<RectTransform>().sizeDelta = new Vector2(53, 29);
         viewEffects.SetActive(false);
 
-        GameObject viewEffectsTextBox = new GameObject("ViewEffectsText");
+        GameObject viewEffectsTextBox = new GameObject("viewEffectsText");
         viewEffectsTextBox.transform.SetParent(viewEffects.transform);
         viewEffectsTextBox.transform.localPosition = new Vector3(0f, 0f, 0f);
         Text viewEffectsText = viewEffectsTextBox.AddComponent<Text>();
@@ -142,6 +142,11 @@ public abstract class Piece : EventTrigger
     public virtual void updateAttack()
     {
         Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Equals("attack")).text = attack.ToString();
+    }
+
+    public virtual void updateEffects()
+    {
+        Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Equals("viewEffectsText")).text = String.Join(", ", activeBuffs.ConvertAll<String>(b => EffectMap[b.GetType()])); ;
     }
 
     public virtual void updateSprite()
@@ -270,6 +275,7 @@ public abstract class Piece : EventTrigger
 
         if (activeBuffs.Count != 0)
         {
+
             viewEffects.SetActive(true);
         }
         
