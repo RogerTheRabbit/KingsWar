@@ -9,6 +9,11 @@ public class TurnManager : MonoBehaviour
     Player player1;
     Player player2;
 
+    void Create(PieceManager pieceManager)
+    {
+        this.pieceManager = pieceManager;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -6,15 +6,23 @@ public class Player : MonoBehaviour
 {
     static int maxMana = 12;
     static int maxHandSize = 10;
-    int playerMana = 0;
-    Board gameBoard;
+    int playerMana;
+    PieceManager pieceManager;
+    TurnManager turnManager;
     Card[] cards;
+
+    void Create(PieceManager pieceManager, TurnManager turnManager)
+    {
+        playerMana = 0;
+        this.pieceManager = pieceManager;
+        cards = new Card[maxHandSize];
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         cards = new Card[maxHandSize];
-        gameBoard = 
+        
     }
 
     // Update is called once per frame
