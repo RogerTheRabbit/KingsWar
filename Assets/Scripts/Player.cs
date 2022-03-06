@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     bool isWhite;
     TurnManager turnManager;
     public PieceManager pieceManager;
-    HashSet<Card> cards;
+    public HashSet<Card> cards;
     GameObject cardPrefab;
 
     private Dictionary<string, Type> cardLibrary = new Dictionary<string, Type>()
