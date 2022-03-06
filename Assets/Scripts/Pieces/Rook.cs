@@ -13,12 +13,14 @@ public class Rook : Piece
         if (white)
         {
             resourcePath = "Pieces/White/";
-            resourceName = "Plastic 1 128x128_5";
+            // resourceName = "Plastic 1 128x128_5";
+            resourceName = "White_-_Plastic_1_128x128-noback_4";
         }
         else
         {
             resourcePath = "Pieces/Black/";
-            resourceName = "Plastic 1 128x128_5";
+            // resourceName = "Plastic 1 128x128_5";
+            resourceName = "Black_-_Plastic_1_128x128-noback_4";
         }
         Sprite[] all = Resources.LoadAll<Sprite>(resourcePath);
         foreach (var s in all)

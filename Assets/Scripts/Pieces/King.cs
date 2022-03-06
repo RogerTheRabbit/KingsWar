@@ -17,12 +17,14 @@ public class King : Piece
         if (white)
         {
             resourcePath = "Pieces/White/";
-            resourceName = "Plastic 1 128x128_2";
+            // resourceName = "Plastic 1 128x128_2";
+            resourceName = "White_-_Plastic_1_128x128-noback_2";
         }
         else
         {
             resourcePath = "Pieces/Black/";
-            resourceName = "Plastic 1 128x128_3";
+            // resourceName = "Plastic 1 128x128_3";
+            resourceName = "Black_-_Plastic_1_128x128-noback_2";
         }
         Sprite[] all = Resources.LoadAll<Sprite>(resourcePath);
         foreach (var s in all)

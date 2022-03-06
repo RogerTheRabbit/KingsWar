@@ -13,12 +13,14 @@ public class Pawn : Piece
         if (white)
         {
             resourcePath = "Pieces/White/";
-            resourceName = "Plastic 1 128x128_3";
+            // resourceName = "Plastic 1 128x128_3";
+            resourceName = "White_-_Plastic_1_128x128-noback_5";
         }
         else
         {
             resourcePath = "Pieces/Black/";
-            resourceName = "Plastic 1 128x128_4";
+            // resourceName = "Plastic 1 128x128_4";
+            resourceName = "Black_-_Plastic_1_128x128-noback_5";
         }
         Sprite[] all = Resources.LoadAll<Sprite>(resourcePath);
         foreach (var s in all)
