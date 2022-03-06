@@ -24,22 +24,39 @@ public abstract class Piece : EventTrigger
         this.turnManager = turnManager;
         this.white = white;
 
+        GameObject healthPanel = new GameObject("healthPanel");
+        healthPanel.transform.SetParent(this.transform);
+        healthPanel.transform.localPosition = new Vector3(29.593399f, -38.6049995f, 0);
+        Image healthImage = healthPanel.AddComponent<Image>();
+        healthImage.color = Color.red;
+        healthPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(15, 12);
+        
+
         GameObject healthTextBox = new GameObject("health");
-        healthTextBox.transform.SetParent(this.transform);
-        healthTextBox.transform.localPosition = new Vector3(40f, -42.9000015f, 0f);
+        healthTextBox.transform.SetParent(healthPanel.transform);
+        healthTextBox.transform.localPosition = new Vector3(0f, 0f, 0f);
         Text healthText = healthTextBox.AddComponent<Text>();
         healthText.text = health.ToString();
+        healthText.alignment = TextAnchor.MiddleCenter;
         healthText.color = Color.white;
         healthText.fontSize = 120;
         healthText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         healthTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
         healthTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150);
 
+        GameObject attackPanel = new GameObject("attackPanel");
+        attackPanel.transform.SetParent(this.transform);
+        attackPanel.transform.localPosition = new Vector3(-29.593399f, -38.6049995f, 0);
+        Image attackImage = attackPanel.AddComponent<Image>();
+        attackImage.color = Color.gray;
+        attackPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(15, 12);
+
         GameObject attackTextBox = new GameObject("attack");
-        attackTextBox.transform.SetParent(this.transform);
-        attackTextBox.transform.localPosition = new Vector3(-26.5f, -42.9000015f, 0f);
+        attackTextBox.transform.SetParent(attackPanel.transform);
+        attackTextBox.transform.localPosition = new Vector3(0f, 0f, 0f);
         Text attackText = attackTextBox.AddComponent<Text>();
         attackText.text = attack.ToString();
+        attackText.alignment = TextAnchor.MiddleCenter;
         attackText.color = Color.white;
         attackText.fontSize = 120;
         attackText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
@@ -50,7 +67,7 @@ public abstract class Piece : EventTrigger
 
     public virtual void updateHealth()
     {
-        Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Contains("health")).text = health.ToString();
+        Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Equals("health")).text = health.ToString();
     }
 
     public virtual void place(Cell cell)
