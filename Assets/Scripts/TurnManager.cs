@@ -5,7 +5,7 @@ public class TurnManager : MonoBehaviour
     public Player whitePlayer;
     public Player blackPlayer;
     public GameObject cardPrefab;
-    bool isWhiteTurn;
+    public bool isWhiteTurn {get; set;}
     public bool hasMoved {get; set;}
 
     void Start()
