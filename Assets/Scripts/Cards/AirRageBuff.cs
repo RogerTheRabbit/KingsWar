@@ -7,6 +7,7 @@ public class AirRageBuff : Buffs
 
     public void init(TurnManager turnManager, PieceManager pieceManager, bool white, int manaCost)
     {
+        text = "Give a piece Air Rage (Attack twice)";
         base.init(turnManager, pieceManager, white);
         this.manaCost = manaCost;
     }

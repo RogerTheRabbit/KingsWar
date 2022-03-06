@@ -4,6 +4,7 @@ public class SummonBishop : Summon
 {
     public override void init(TurnManager turnManager, PieceManager pieceManager, bool white)
     {
+        text = "Summon a 3-3 Bishop";
         base.init(turnManager, pieceManager, white);
         base.manaCost = 3;
 

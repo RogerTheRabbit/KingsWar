@@ -12,7 +12,7 @@ public abstract class Card : EventTrigger
     private Cell targetCell;
     public bool white = false;
 
-    public string text;
+    public string text = "";
 
     public virtual void init(TurnManager turnmanager, PieceManager pieceManager,bool white)
     {
@@ -57,13 +57,14 @@ public abstract class Card : EventTrigger
 
         GameObject cardTextBox = new GameObject("cardText");
         cardTextBox.transform.SetParent(cardPanel.transform);
+        cardTextBox.transform.localPosition = new Vector3(0, -8.80000019f, 0);
         Text cardText = cardTextBox.AddComponent<Text>();
-        cardText.text = manaCost.ToString();
+        cardText.text = text.ToString();
         cardText.color = Color.white;
-        cardText.fontSize = 120;
+        cardText.fontSize = 80;
         cardText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         cardTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        cardTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
+        cardTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(530, 460);
 
     }
 
