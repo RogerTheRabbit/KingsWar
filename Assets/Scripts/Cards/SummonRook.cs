@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class SummonRook : Summon
 {
-
     public override bool playCard(Cell pieceLocation)
     {
-        if (pieceLocation.currentPiece == null)
+        if (pieceLocation.currentPiece == null && base.canPlayCard(this))
         {
             if (this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y > 1) {
                 Piece rook = this.pieceManager.CreatePiece(typeof(Rook));
