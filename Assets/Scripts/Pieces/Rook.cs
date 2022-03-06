@@ -40,29 +40,29 @@ public class Rook : Piece
             return false;
         }
 
+        int xDelta = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
+        int yDelta = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
         Cell[,] matrixboard = start.mBoard.mAllCells;
 
-        int x = start.mBoardPosition.x - end.mBoardPosition.x;
-        int y = start.mBoardPosition.y - end.mBoardPosition.y;
-
-        if (y == 0) {
-            int[] range = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
-            foreach(int i in range){
-                if (matrixboard[x,i].currentPiece != null) {
+        // Check straight
+        if(xDelta != 0) {
+            // Check x-direction move
+            foreach(int i in Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x)){
+                if(matrixboard[i,start.mBoardPosition.y].currentPiece != null) {
+                    return false;
+                }
+            }
+        } else {
+            // Check y-direction move
+            foreach(int i in Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y)){
+                if(matrixboard[start.mBoardPosition.x, i].currentPiece != null) {
                     return false;
                 }
             }
         }
-
-        if (x == 0) {
-            int[] range = Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y);
-            foreach(int i in range){
-                if (matrixboard[i,y].currentPiece != null) {
-                    return false;
-                }
-            }
-        }
-        return (x == 0 && y != 0) || (x != 0 && y == 0);
+        bool x = xDelta == 0;
+        bool y = yDelta == 0;
+        return (x && !y) || (!x && y);
     }
     void Start()
     {
