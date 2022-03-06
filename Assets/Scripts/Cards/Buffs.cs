@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buffs : MonoBehaviour
+public class Buffs : Card
 {
+
+    public override bool playCard(TurnManager turnManager, Cell pieceLocation) {
+        return false;
+    }
+    public override void useMana(TurnManager turnManager){
+
+    }
     // Start is called before the first frame update
     void Start()
     {

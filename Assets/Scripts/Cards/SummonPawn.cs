@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class SummonPawn : Summon
 {
-
-    public override void playCard() {
-        // Tell turn manager that a pawn was summoned
-    }
-
-    public override void useMana()
+    public override void useMana(TurnManager turnManager)
     {
         // Tell turn manager to remove 1 mana 
     }

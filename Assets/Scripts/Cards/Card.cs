@@ -4,9 +4,8 @@ using UnityEngine;
 
 public abstract class Card : MonoBehaviour
 {
-
-    public abstract void playCard();
-    public abstract void useMana();
+    public abstract bool playCard(TurnManager turnManager, Cell pieceLocation);
+    public abstract void useMana(TurnManager turnManager);
 
 
     // Start is called before the first frame update
