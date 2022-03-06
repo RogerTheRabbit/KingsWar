@@ -110,10 +110,7 @@ public abstract class Piece : EventTrigger
         Image viewEffectsImage = viewEffects.AddComponent<Image>();
         viewEffectsImage.color = Color.cyan;
         viewEffectsImage.GetComponent<RectTransform>().sizeDelta = new Vector2(53, 29);
-        viewEffects.SetActive(true);
-
-        activeBuffs.Add(new HolyProtectionBuff());
-        activeBuffs.Add(new AddStatBuff());
+        viewEffects.SetActive(false);
 
         GameObject viewEffectsTextBox = new GameObject("ViewEffectsText");
         viewEffectsTextBox.transform.SetParent(viewEffects.transform);
@@ -271,7 +268,11 @@ public abstract class Piece : EventTrigger
 	{
 		base.OnPointerEnter(eventData);
 
-        viewEffects.SetActive(true);
+        if (activeBuffs.Count != 0)
+        {
+            viewEffects.SetActive(true);
+        }
+        
 	}
 
     public override void OnPointerExit(PointerEventData eventData)
