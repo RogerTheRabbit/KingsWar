@@ -13,13 +13,14 @@ public class PieceManager : MonoBehaviour
 
     private Dictionary<string, Type> pieceLibrary = new Dictionary<string, Type>()
     {
-        {"P",  typeof(Knight)},
-        {"R",  typeof(Knight)},
+        {"P",  typeof(Pawn)},
+        {"R",  typeof(Rook)},
         {"KN", typeof(Knight)},
-        {"B",  typeof(Knight)},
-        {"K",  typeof(Knight)},
-        {"Q",  typeof(Knight)}
+        {"B",  typeof(Bishop)},
+        {"K",  typeof(King)},
+        {"Q",  typeof(Queen)}
     };
+
 
 
     private string[] pieceOrder = new string[16]

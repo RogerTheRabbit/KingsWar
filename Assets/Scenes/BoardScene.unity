@@ -488,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829684251482824123, guid: 30cb478d46291c449a2f03f5494cbaa0, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5829684251482824123, guid: 30cb478d46291c449a2f03f5494cbaa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 362855768}
   - component: {fileID: 362855767}
   - component: {fileID: 362855766}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Parent Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,8 +625,8 @@ RectTransform:
   m_Children:
   - {fileID: 1765948956}
   - {fileID: 325579085}
-  - {fileID: 126395762}
   - {fileID: 967964332}
+  - {fileID: 126395762}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -644,7 +644,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3311595704078069201, guid: 87845f628c61d92498a4c985852636ad, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3311595704078069201, guid: 87845f628c61d92498a4c985852636ad, type: 3}
       propertyPath: m_LocalPosition.x
