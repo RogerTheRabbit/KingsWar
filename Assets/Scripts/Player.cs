@@ -18,6 +18,11 @@ public class Player : MonoBehaviour
         cards = new Card[maxHandSize];
     }
 
+    public void drawRandomCard()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {

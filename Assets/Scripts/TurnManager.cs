@@ -4,14 +4,44 @@ public class TurnManager : MonoBehaviour
 {
 
     PieceManager pieceManager;
-    Player player1;
-    Player player2;
+    Player whitePlayer;
+    Player blackPlayer;
+    bool isWhiteTurn;
+    bool hasMoved;
 
     void Create(PieceManager pieceManager)
     {
         this.pieceManager = pieceManager;
-        player1 = new Player();
-        player2 = new Player();
+        whitePlayer = new Player();
+        blackPlayer = new Player();
+        isWhiteTurn = false;
+        hasMoved = false;
+
+        whitePlayer.drawRandomCard();
+        whitePlayer.drawRandomCard();
+        whitePlayer.drawRandomCard();
+
+        blackPlayer.drawRandomCard();
+        blackPlayer.drawRandomCard();
+        blackPlayer.drawRandomCard();
+    }
+
+    void turnStart()
+    {
+        hasMoved = false;
+        if (isWhiteTurn)
+        {
+            whitePlayer.drawRandomCard();
+        }
+        else
+        {
+            blackPlayer.drawRandomCard();
+        }
+    }
+
+    void endTurn()
+    {
+        isWhiteTurn = !isWhiteTurn;
     }
 
     // Start is called before the first frame update
