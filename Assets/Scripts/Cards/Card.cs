@@ -37,7 +37,7 @@ public abstract class Card : EventTrigger
         manaText.fontSize = 120;
         manaText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         manaTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        manaTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+        manaTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 150);
 
     }
 
