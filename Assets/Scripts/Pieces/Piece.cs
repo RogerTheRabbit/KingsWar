@@ -146,7 +146,7 @@ public abstract class Piece : EventTrigger
 
     public virtual void updateEffects()
     {
-        Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Equals("viewEffectsText")).text = String.Join(", ", activeBuffs.ConvertAll<String>(b => EffectMap[b.GetType()])); ;
+        Array.Find(viewEffects.GetComponentsInChildren<Text>(), c => c.name.Equals("viewEffectsText")).text = String.Join(", ", activeBuffs.ConvertAll<String>(b => EffectMap[b.GetType()])); ;
     }
 
     public virtual void updateSprite()
@@ -273,7 +273,7 @@ public abstract class Piece : EventTrigger
 	{
 		base.OnPointerEnter(eventData);
 
-        if (activeBuffs.Count != 0)
+        if (activeBuffs.Count > 0)
         {
             updateEffects();
             viewEffects.SetActive(true);
