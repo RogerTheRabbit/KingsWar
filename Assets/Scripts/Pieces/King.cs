@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,12 +7,14 @@ using UnityEngine.UI;
 public class King : Piece
 {
     // Start is called before the first frame update
+    private bool hasMoved;
 
     public override void init(TurnManager turnManager, bool white)
     {
         base.init(turnmanager, white);
         string resourcePath = null;
         string resourceName = null;
+        this.hasMoved = false;
         if (white)
         {
             resourcePath = "Pieces/White/";
@@ -44,12 +47,33 @@ public class King : Piece
         int xDelta = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
         int yDelta = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
 
+        Cell[,] matrixboard = start.mBoard.mAllCells;
+
+        // Check castle
+        if (xDelta == 2 && !this.hasMoved ) {
+            foreach(int i in Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x)){
+                if(matrixboard[i,start.mBoardPosition.y].currentPiece != null) {
+                    return false;
+                }
+            }
+            Piece rook = matrixboard[end.mBoardPosition.x + 1,end.mBoardPosition.y].currentPiece;
+            if (rook != null && rook.GetType().Equals(typeof(Rook))) {
+                this.castle("King", matrixboard, end);
+                this.hasMoved = true;
+                return true;
+            }
+            rook = matrixboard[end.mBoardPosition.x - 2, end.mBoardPosition.y].currentPiece;
+            if (rook != null && rook.GetType().Equals(typeof(Rook))) {
+                this.castle("Queen", matrixboard, end);
+                this.hasMoved = true;
+                return true;
+            }
+        } 
+
         // Not valid move if moved more than 1 place
         if(xDelta > 1 || yDelta > 1) {
             return false;
         }
-
-        Cell[,] matrixboard = start.mBoard.mAllCells;
 
         if(xDelta == yDelta) {
             // Check diagonal
@@ -81,8 +105,27 @@ public class King : Piece
 
         bool x = xDelta == 0;
         bool y = yDelta == 0;
+        if (!this.hasMoved) {
+            this.hasMoved = (x && !y) || (!x && y) || (xDelta == yDelta);
+        }
         return (x && !y) || (!x && y) || (xDelta == yDelta);
     }
+
+    public void castle(string direction, Cell[,] matrixboard, Cell end) {
+        // Do a king side castle
+        if (direction == "King") {
+            Piece rook = matrixboard[end.mBoardPosition.x + 1, end.mBoardPosition.y].currentPiece;
+            matrixboard[end.mBoardPosition.x + 1, end.mBoardPosition.y].currentPiece = null;
+            rook.place(matrixboard[end.mBoardPosition.x - 1, end.mBoardPosition.y]);
+        }
+        // Do a queen side castle 
+        else {
+            Piece rook = matrixboard[end.mBoardPosition.x - 2, end.mBoardPosition.y].currentPiece;
+            matrixboard[end.mBoardPosition.x - 2, end.mBoardPosition.y].currentPiece = null;
+            rook.place(matrixboard[end.mBoardPosition.x + 1, end.mBoardPosition.y]);
+        }
+    }
+
     void Start()
     {
         
