@@ -147,6 +147,20 @@ public abstract class Piece : EventTrigger
     {
         base.OnEndDrag(eventData);
 
+        // Follow pointer
+        transform.position += (Vector3)eventData.delta;
+
+        foreach (Cell cell in startCell.mBoard.mAllCells) {
+            if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
+            {
+                // If the mouse is within a valid cell, get it, and break.
+                targetCell = cell;
+                break;
+            }
+            // If the mouse is not within any highlighted cell, we don't have a valid move.
+            targetCell = null;
+        }
+
 
         if (this.hasMove(startCell, targetCell))
         {
@@ -169,19 +183,6 @@ public abstract class Piece : EventTrigger
 
         // Follow pointer
         transform.position += (Vector3)eventData.delta;
-
-        foreach (Cell cell in startCell.mBoard.mAllCells) {
-            if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
-            {
-                // If the mouse is within a valid cell, get it, and break.
-                targetCell = cell;
-                break;
-            }
-            // If the mouse is not within any highlighted cell, we don't have a valid move.
-            targetCell = null;
-        }
-
-        
     }
 
     protected virtual void action()
