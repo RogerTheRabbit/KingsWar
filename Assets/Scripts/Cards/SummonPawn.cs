@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SummonPawn : Summon
 {
+    public override void init(TurnManager turnManager, PieceManager pieceManager, bool white)
+    {
+        base.init(turnManager, pieceManager, white);
+        base.manaCost = 1;
+    }
     public override bool playCard(Cell pieceLocation)
     {
         if (pieceLocation.currentPiece == null && base.canPlayCard(this))

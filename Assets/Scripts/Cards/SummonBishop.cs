@@ -6,7 +6,6 @@ public class SummonBishop : Summon
     {
         base.init(turnManager, pieceManager, white);
         base.manaCost = 3;
-
     }
 
     public override bool playCard(Cell pieceLocation)

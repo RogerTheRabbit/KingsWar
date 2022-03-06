@@ -5,6 +5,11 @@ using UnityEngine;
 public class SummonKnight : Summon
 {
 
+    public override void init(TurnManager turnManager, PieceManager pieceManager, bool white)
+    {
+        base.init(turnManager, pieceManager, white);
+        base.manaCost = 3;
+    }
     public override bool playCard(Cell pieceLocation)
     {
         if (pieceLocation.currentPiece == null && base.canPlayCard(this))
