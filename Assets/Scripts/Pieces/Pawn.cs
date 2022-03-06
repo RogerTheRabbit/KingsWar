@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pawn : Piece
 {
     public override void init(PieceManager pieceManager, bool white)
     {
         base.init(pieceManager, white);
+        Sprite[] all = Resources.LoadAll<Sprite>("Pieces/Black/");
+        foreach (var s in all)
+        {
+            if (s.name.Contains("Black - Plastic 1 128x128_4"))
+            {
+                GetComponent<Image>().sprite = s;
+                GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                GetComponent<Image>().GetComponent<SpriteRenderer>().sortingOrder = 1;
+                break;
+            }
+        }
     }
 
 	public override bool hasMove(Cell start, Cell end) 
