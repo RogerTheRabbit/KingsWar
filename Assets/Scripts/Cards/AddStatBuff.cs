@@ -10,6 +10,7 @@ public class AddStatBuff : Buffs
 
 
     public void init(TurnManager turnManager, PieceManager pieceManager, bool white, int manaCost, int addHealth, int addAttack) {
+        text = "Give a piece +" + addAttack + " attack and +" + addHealth + " health";
         base.init(turnManager, pieceManager, white);
         this.manaCost = manaCost;
         this.addHealth = addHealth;
@@ -26,6 +27,7 @@ public class AddStatBuff : Buffs
         piece.health += addHealth;
         piece.updateHealth();
         piece.updateAttack();
+        base.spendMana();
 
         return true;
 

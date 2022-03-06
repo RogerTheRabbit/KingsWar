@@ -18,27 +18,20 @@ public class SummonKnight : Summon
                 Piece knight = this.pieceManager.CreatePiece(typeof(Knight));
                 knight.init(turnManager, white, this.pieceManager);
                 knight.place(pieceLocation);
-                this.useMana();
+                base.spendMana();
                 return true;
             }
             else if (!this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y < 6) {
                 Piece knight = this.pieceManager.CreatePiece(typeof(Knight));
                 knight.init(turnManager, white, this.pieceManager);
                 knight.place(pieceLocation);
-                this.useMana();
+                base.spendMana();
                 return true;
             }
         }
         return false;
     }
-    public override void useMana()
-    {
-        if(!this.turnManager.isWhiteTurn) {
-            this.turnManager.whitePlayer.playerCurrentMana -= 3;
-        } else {
-            this.turnManager.blackPlayer.playerCurrentMana -= 3;
-        }
-    }
+
     // Start is called before the first frame update
     void Start()
     {

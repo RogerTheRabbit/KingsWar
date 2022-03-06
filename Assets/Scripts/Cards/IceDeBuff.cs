@@ -6,6 +6,7 @@ public class IceDeBuff : Buffs
 {
     public void init(TurnManager turnManager, PieceManager pieceManager, bool white, int manaCost)
     {
+        text = "Freeze an enemy piece";
         base.init(turnManager, pieceManager, white);
         this.manaCost = manaCost;
     }
@@ -19,6 +20,7 @@ public class IceDeBuff : Buffs
 
         piece.activeBuffs.Add(this);
         piece.updateSprite();
+        base.spendMana();
 
         return true;
     }

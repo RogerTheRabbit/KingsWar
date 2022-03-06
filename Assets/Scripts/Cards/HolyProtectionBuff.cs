@@ -9,6 +9,7 @@ public class HolyProtectionBuff : Buffs
 
     public void init(TurnManager turnManager, PieceManager pieceManager,bool white, int manaCost)
     {
+        text = "Give a piece Holy Protection (Immune for 1 hit)";
         base.init(turnManager, pieceManager, white);
         this.manaCost = manaCost;
     }
@@ -22,7 +23,7 @@ public class HolyProtectionBuff : Buffs
 
         piece.activeBuffs.Add(this);
         piece.updateSprite();
-        
+        base.spendMana();
 
         return true;
 

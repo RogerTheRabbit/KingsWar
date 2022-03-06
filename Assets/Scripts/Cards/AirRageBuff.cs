@@ -7,6 +7,7 @@ public class AirRageBuff : Buffs
 
     public void init(TurnManager turnManager, PieceManager pieceManager, bool white, int manaCost)
     {
+        text = "Give a piece Air Rage (Attack twice)";
         base.init(turnManager, pieceManager, white);
         this.manaCost = manaCost;
     }
@@ -20,9 +21,11 @@ public class AirRageBuff : Buffs
 
         piece.activeBuffs.Add(this);
         piece.updateSprite();
+        base.spendMana();
 
         return true;
     }
+
     // Start is called before the first frame update
     void Start()
     {
