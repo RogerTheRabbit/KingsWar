@@ -119,7 +119,7 @@ public abstract class Piece : EventTrigger
         viewEffectsText.text = String.Join(", ",activeBuffs.ConvertAll<String>(b => EffectMap[b.GetType()]));
         viewEffectsText.alignment = TextAnchor.MiddleCenter;
         viewEffectsText.color = Color.black;
-        viewEffectsText.fontSize = 30;
+        viewEffectsText.fontSize = 100;
         viewEffectsText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         viewEffectsTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
         viewEffectsTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(530, 290);
