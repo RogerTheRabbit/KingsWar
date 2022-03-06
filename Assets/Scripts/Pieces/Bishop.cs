@@ -23,18 +23,25 @@ public class Bishop : Piece
             return false;
         }
 
-        Cell[,] matrixboard = start.mBoard.mAllCells;
-
         int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
         int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
 
-        int[] range = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
-        foreach(int i in range) {
-        	if(matrixboard[i,i].currentPiece != null) {
-        		return false;
-        	} 
+        // Not valid move if not diagonal move
+        if(x != y) {
+            return false;
         }
-        return x == y;
+
+        Cell[,] matrixboard = start.mBoard.mAllCells;
+
+        // Check diagonal
+        int[] xCords = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
+        int[] yCords = Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y);
+        for(int pos = 0; pos < x; pos++) {
+            if(matrixboard[xCords[pos],yCords[pos]].currentPiece != null) {
+                    return false;
+            }
+        }
+        return true;
     }
     // Start is called before the first frame update
     void Start()
