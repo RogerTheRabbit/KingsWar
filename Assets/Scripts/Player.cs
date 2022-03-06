@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     static int maxMana = 12;
     static int maxHandSize = 10;
-    public int playerMana;
+    public int playerCurrentMana;
+    public int turnMaxMana;
     bool isWhite;
     TurnManager turnManager;
     public PieceManager pieceManager;
@@ -20,7 +21,9 @@ public class Player : MonoBehaviour
 
     public void Setup(TurnManager turnManager, PieceManager pieceManager, GameObject cardPrefab, bool isWhite)
     {
-        playerMana = 0;
+        turnMaxMana = 0;
+        playerCurrentMana = turnMaxMana;
+
         this.turnManager = turnManager;
         this.cardPrefab = cardPrefab;
         this.pieceManager = pieceManager;
@@ -50,5 +53,14 @@ public class Player : MonoBehaviour
         newCard.init(turnManager, pieceManager, isWhite);
         cards.Add(newCard);
         
+    }
+
+    public void resetAndIncrementMana()
+    {
+        if (turnMaxMana < maxMana)
+        {
+            turnMaxMana += 1;
+        }
+        playerCurrentMana = turnMaxMana;
     }
 }

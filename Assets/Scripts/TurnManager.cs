@@ -34,10 +34,12 @@ public class TurnManager : MonoBehaviour
         if (isWhiteTurn)
         {
             whitePlayer.drawRandomCard();
+            whitePlayer.resetAndIncrementMana();
         }
         else
         {
             blackPlayer.drawRandomCard();
+            blackPlayer.resetAndIncrementMana();
         }
     }
 
