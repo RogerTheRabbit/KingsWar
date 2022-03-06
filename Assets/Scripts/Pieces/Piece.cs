@@ -275,7 +275,7 @@ public abstract class Piece : EventTrigger
 
         if (activeBuffs.Count != 0)
         {
-
+            updateEffects();
             viewEffects.SetActive(true);
         }
         
