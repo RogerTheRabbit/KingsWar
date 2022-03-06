@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5829684251482824123, guid: 30cb478d46291c449a2f03f5494cbaa0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -234.66667
+      value: -424.6667
       objectReference: {fileID: 0}
     - target: {fileID: 5829684251482824123, guid: 30cb478d46291c449a2f03f5494cbaa0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 0.6
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
