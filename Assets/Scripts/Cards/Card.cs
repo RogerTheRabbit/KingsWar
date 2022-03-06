@@ -39,6 +39,18 @@ public abstract class Card : EventTrigger
     {
         base.OnEndDrag(eventData);
 
+        foreach (Cell cell in turnManager.board.mAllCells)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
+            {
+                // If the mouse is within a valid cell, get it, and break.
+                targetCell = cell;
+                break;
+            }
+            // If the mouse is not within any highlighted cell, we don't have a valid move.
+            targetCell = null;
+        }
+
 
         if (targetCell != null)
         {
@@ -54,18 +66,6 @@ public abstract class Card : EventTrigger
 
         // Follow pointer
         transform.position += (Vector3)eventData.delta;
-
-        foreach (Cell cell in turnManager.board.mAllCells)
-        {
-            if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
-            {
-                // If the mouse is within a valid cell, get it, and break.
-                targetCell = cell;
-                break;
-            }
-            // If the mouse is not within any highlighted cell, we don't have a valid move.
-            targetCell = null;
-        }
     }
 
 
