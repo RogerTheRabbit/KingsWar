@@ -77,6 +77,9 @@ public class Pawn : Piece
             // We are not attacking
             // Check a single forward move
             if (y == 1 && x == 0 && matrixboard[start.mBoardPosition.x, end.mBoardPosition.y].currentPiece == null) {
+                if (end.mBoardPosition.y == 0) {
+                    this.promote(start, end, matrixboard);
+                }
                 return true;
             }
             else if (x == 0) {
