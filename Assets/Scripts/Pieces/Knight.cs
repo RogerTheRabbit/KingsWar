@@ -10,12 +10,14 @@ public class Knight : Piece
     public override void init(PieceManager pieceManager, bool white)
     {
         base.init(pieceManager, white);
-        Sprite[] all = Resources.LoadAll<Sprite>("\\Pieces\\Black\\Black - Plastic 1 128x128.png");
+        Sprite[] all = Resources.LoadAll<Sprite>("Pieces/Black/");
         foreach (var s in all)
         {
-            if (s.name == "Black - Plastic 1 128x128_2")
+            if (s.name.Contains("Black - Plastic 1 128x128_2"))
             {
                 GetComponent<Image>().sprite = s;
+                GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                GetComponent<Image>().GetComponent<SpriteRenderer>().sortingOrder = 1;
                 break;
             }
         }
@@ -23,14 +25,7 @@ public class Knight : Piece
 
     public override bool hasMove(Cell start, Cell end)
     {
-        if (end.currentPiece.white == start.currentPiece.white)
-        {
-            return false;
-        }
-
-        int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
-        int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
-        return x * y == 2;
+        return true;
     }
     void Start()
     {
