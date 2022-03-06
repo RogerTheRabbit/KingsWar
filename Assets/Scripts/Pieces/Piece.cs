@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEditor;
 using System;
 using System.Collections.Generic;
 
@@ -16,6 +17,9 @@ public abstract class Piece : EventTrigger
     public TurnManager turnManager = null;
     public bool white = false;
     public bool killed = false;
+
+    public List<Buffs> activeBuffs = new List<Buffs>();
+    GameObject shield = null;
 
     public virtual void init(TurnManager turnManager, bool white)
     {
@@ -63,11 +67,36 @@ public abstract class Piece : EventTrigger
         attackTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
         attackTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150);
 
+        shield = new GameObject("shield");
+        shield.transform.SetParent(this.transform);
+        Image shieldImage = shield.AddComponent<Image>();
+        shieldImage.sprite = Resources.Load<Sprite>("Circle") as Sprite;
+        shieldImage.color = new Color(1f, 0.92f, 0.016f, 0.3f);
+        shield.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        shield.SetActive(false);
+
     }
 
     public virtual void updateHealth()
     {
         Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Equals("health")).text = health.ToString();
+    }
+
+    public virtual void updateAttack()
+    {
+        Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Equals("attack")).text = attack.ToString();
+    }
+
+    public virtual void updateSprite()
+    {
+        if (activeBuffs.Exists(b => b.GetType().Equals(typeof(HolyProtectionBuff))))
+        {
+            shield.SetActive(true);
+        }
+        else
+        {
+            shield.SetActive(false);
+        }
     }
 
     public virtual void place(Cell cell)
@@ -152,7 +181,16 @@ public abstract class Piece : EventTrigger
         {
             Piece enemyPiece = targetCell.currentPiece;
             enemyPiece.health -= this.attack;
-            this.health -= enemyPiece.attack;
+
+            if (activeBuffs.Exists(b => b.GetType().Equals(typeof(HolyProtectionBuff))))
+            {
+                activeBuffs.RemoveAll(b => b.GetType().Equals(typeof(HolyProtectionBuff)));
+                updateSprite();
+            }
+            else
+            {
+                this.health -= enemyPiece.attack;
+            }
 
             updateHealth();
             enemyPiece.updateHealth();

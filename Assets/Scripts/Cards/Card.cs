@@ -6,7 +6,9 @@ public abstract class Card : EventTrigger
     private TurnManager turnManager;
     private Cell targetCell;
 
-    void Create(TurnManager turnManager)
+    public int manaCost;
+
+    public void Create(TurnManager turnManager)
     {
         this.turnManager = turnManager;
     }
