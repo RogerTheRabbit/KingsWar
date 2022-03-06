@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         board.Create();
         pieceManager.Setup(board, turnManager);
+        turnManager.board = board;
     }
 
     // Update is called once per frame

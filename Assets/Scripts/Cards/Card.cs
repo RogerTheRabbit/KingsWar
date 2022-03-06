@@ -14,7 +14,7 @@ public abstract class Card : EventTrigger
     public virtual void init(TurnManager turnmanager, bool white)
     {
 
-        GetComponent<Image>().color = Color.clear;
+        // GetComponent<Image>().color = Color.clear;
 
         this.turnManager = turnmanager;
         this.white = white;
@@ -55,7 +55,7 @@ public abstract class Card : EventTrigger
         // Follow pointer
         transform.position += (Vector3)eventData.delta;
 
-        foreach (Cell cell in targetCell.mBoard.mAllCells)
+        foreach (Cell cell in turnManager.board.mAllCells)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
             {
@@ -66,8 +66,6 @@ public abstract class Card : EventTrigger
             // If the mouse is not within any highlighted cell, we don't have a valid move.
             targetCell = null;
         }
-
-
     }
 
 
