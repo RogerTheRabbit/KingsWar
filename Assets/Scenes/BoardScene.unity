@@ -1102,6 +1102,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 362855769}
     m_Modifications:
     - target: {fileID: -4511246294493737823, guid: da3282bf7b083064f916114ad0cdd21c, type: 3}
+      propertyPath: board
+      value: 
+      objectReference: {fileID: 967964331}
+    - target: {fileID: -4511246294493737823, guid: da3282bf7b083064f916114ad0cdd21c, type: 3}
       propertyPath: cardPrefab
       value: 
       objectReference: {fileID: 8806262695548423097, guid: ff1d45e62a85aff4e8f793c440a5f09c, type: 3}
@@ -1113,6 +1117,10 @@ PrefabInstance:
       propertyPath: whitePlayer
       value: 
       objectReference: {fileID: 691846300}
+    - target: {fileID: -4511246294493737823, guid: da3282bf7b083064f916114ad0cdd21c, type: 3}
+      propertyPath: pieceManager
+      value: 
+      objectReference: {fileID: 1416605533}
     - target: {fileID: 1782323239234560947, guid: da3282bf7b083064f916114ad0cdd21c, type: 3}
       propertyPath: m_Name
       value: PR_TurnManager
