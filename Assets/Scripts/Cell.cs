@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Cell : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class Cell : MonoBehaviour
     {
         if (currentPiece != null)
         {
+            if(currentPiece is King) {
+                SceneManager.LoadScene(currentPiece.white ? "EndGameBlack" :"EndGameWhite");
+            }
             currentPiece.Kill();
         }
     }

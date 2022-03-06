@@ -27,7 +27,7 @@ public class PieceManager : MonoBehaviour
         {typeof(Rook), 5},
         {typeof(Knight), 3},
         {typeof(Bishop), 3},
-        {typeof(King), 20},
+        {typeof(King), 1},
         {typeof(Queen), 9}
     };
 
@@ -37,7 +37,7 @@ public class PieceManager : MonoBehaviour
         {typeof(Rook), 5},
         {typeof(Knight), 3},
         {typeof(Bishop), 3},
-        {typeof(King), 20},
+        {typeof(King), 1},
         {typeof(Queen), 9}
     };
 
