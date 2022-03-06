@@ -23,6 +23,9 @@ public abstract class Piece : EventTrigger
 
     public List<Buffs> activeBuffs = new List<Buffs>();
     GameObject shield = null;
+    GameObject airRage = null;
+
+    public bool airRageMove = false;
 
     public virtual void init(TurnManager turnManager, bool white, PieceManager pieceManager)
 
@@ -80,6 +83,14 @@ public abstract class Piece : EventTrigger
         shield.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         shield.SetActive(false);
 
+        airRage = new GameObject("airRage");
+        airRage.transform.SetParent(this.transform);
+        Image airRageImage = airRage.AddComponent<Image>();
+        airRageImage.sprite = Resources.Load<Sprite>("Air-Rage") as Sprite;
+        airRageImage.color = new Color(1f, 1f, 1f, 0.4f);
+        airRage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        airRage.SetActive(false);
+
     }
 
     public virtual void updateHealth()
@@ -101,6 +112,17 @@ public abstract class Piece : EventTrigger
         else
         {
             shield.SetActive(false);
+        }
+
+        if (activeBuffs.Exists(b => b.GetType().Equals(typeof(AirRageBuff))))
+        {
+            airRageMove = true;
+            airRage.SetActive(true);
+        }
+        else
+        {
+            airRageMove = false;
+            airRage.SetActive(false);
         }
     }
 
@@ -147,6 +169,20 @@ public abstract class Piece : EventTrigger
     {
         base.OnEndDrag(eventData);
 
+        // Follow pointer
+        transform.position += (Vector3)eventData.delta;
+
+        foreach (Cell cell in startCell.mBoard.mAllCells) {
+            if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
+            {
+                // If the mouse is within a valid cell, get it, and break.
+                targetCell = cell;
+                break;
+            }
+            // If the mouse is not within any highlighted cell, we don't have a valid move.
+            targetCell = null;
+        }
+
 
         if (this.hasMove(startCell, targetCell))
         {
@@ -169,19 +205,6 @@ public abstract class Piece : EventTrigger
 
         // Follow pointer
         transform.position += (Vector3)eventData.delta;
-
-        foreach (Cell cell in startCell.mBoard.mAllCells) {
-            if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
-            {
-                // If the mouse is within a valid cell, get it, and break.
-                targetCell = cell;
-                break;
-            }
-            // If the mouse is not within any highlighted cell, we don't have a valid move.
-            targetCell = null;
-        }
-
-        
     }
 
     protected virtual void action()
@@ -193,7 +216,18 @@ public abstract class Piece : EventTrigger
         else
         {
             Piece enemyPiece = targetCell.currentPiece;
-            enemyPiece.health -= this.attack;
+
+            if (enemyPiece.activeBuffs.Exists(b => b.GetType().Equals(typeof(HolyProtectionBuff))))
+            {
+                enemyPiece.activeBuffs.RemoveAll(b => b.GetType().Equals(typeof(HolyProtectionBuff)));
+                enemyPiece.updateSprite();
+            }
+            else
+            {
+                enemyPiece.health -= this.attack;
+            }
+
+            
 
             if (activeBuffs.Exists(b => b.GetType().Equals(typeof(HolyProtectionBuff))))
             {
@@ -221,8 +255,21 @@ public abstract class Piece : EventTrigger
             {
                 startCell.RemovePiece();
             }
-
+            else if (enemyPiece.health > 0 && this.health > 0)
+            {
+                transform.position = startCell.gameObject.transform.position;
+            }
         }
+        if (airRageMove)
+        {
+            airRageMove = false;
+        }
+        else
+        {
+            turnManager.hasMoved = true;
+            airRageMove = true;
+        }
+        
     }
 
     protected virtual void Move()
@@ -240,8 +287,6 @@ public abstract class Piece : EventTrigger
         // Move on board
         transform.position = startCell.transform.position;
         targetCell = null;
-
-        turnManager.hasMoved = true;
     }
 
     public virtual void Kill()

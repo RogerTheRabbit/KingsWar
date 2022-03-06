@@ -8,6 +8,8 @@ public class TurnManager : MonoBehaviour
     public bool isWhiteTurn {get; set;}
     public bool hasMoved {get; set;}
 
+    public Board board;
+
     void Start()
     {
         Debug.Log(whitePlayer);
