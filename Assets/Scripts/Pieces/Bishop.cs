@@ -52,13 +52,17 @@ public class Bishop : Piece
         Cell[,] matrixboard = start.mBoard.mAllCells;
 
         // Check diagonal
-        int[] xCords = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
-        int[] yCords = Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y);
-        for(int pos = 0; pos < x - 1; pos++) {
-            if(matrixboard[xCords[pos],yCords[pos]].currentPiece != null) {
-                    return false;
+        int xDiff = end.mBoardPosition.x - start.mBoardPosition.x;
+        int yDiff = end.mBoardPosition.y - start.mBoardPosition.y;
+
+        for (int pos = 1; pos < Mathf.Abs(xDiff); pos++) {
+            if (matrixboard[start.mBoardPosition.x + (pos * (int)Mathf.Sign(xDiff)), 
+                start.mBoardPosition.y + pos * (int)Mathf.Sign(yDiff)].currentPiece != null)
+            {
+                return false;
             }
         }
+
         return true;
     }
     // Start is called before the first frame update
