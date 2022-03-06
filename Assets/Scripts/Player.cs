@@ -19,13 +19,24 @@ public class Player : MonoBehaviour
 
     private Dictionary<string, Type> cardLibrary = new Dictionary<string, Type>()
     {
-        {"SB",  typeof(SummonBishop)},
+        {"SB", typeof(SummonBishop)},
+        {"SK", typeof(SummonKnight)},
+        {"SP", typeof(SummonPawn)},
+        {"SQ", typeof(SummonQueen)},
+        {"SR", typeof(SummonRook)},
+        {"IB", typeof(IceDeBuff)},
+        {"HB", typeof(HolyProtectionBuff)},
+        {"RB", typeof(AirRageBuff)},
+        {"AB", typeof(AddStatBuff)}
     };
+
+    private List<String> cardKeys;
 
     public void Setup(TurnManager turnManager, PieceManager pieceManager, GameObject cardPrefab, bool isWhite)
     {
         turnMaxMana = 0;
         playerCurrentMana = turnMaxMana;
+        cardKeys = new List<string>(cardLibrary.Keys);
 
         this.turnManager = turnManager;
         this.cardPrefab = cardPrefab;
@@ -52,8 +63,10 @@ public class Player : MonoBehaviour
         newCardObject.transform.localRotation = Quaternion.identity;
         newCardObject.transform.localPosition = new Vector3(cardXPosition, 250 - (150 * cards.Count)%900, 0);
 
+        System.Random rand = new System.Random();
+
         // Store new piece
-        Card newCard = (Card)newCardObject.AddComponent(cardLibrary["SB"]);
+        Card newCard = (Card)newCardObject.AddComponent(cardLibrary[cardKeys[rand.Next(0, cardKeys.Count)]]);
         newCard.init(turnManager, pieceManager, isWhite);
         cards.Add(newCard);
         
