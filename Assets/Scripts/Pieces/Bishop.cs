@@ -25,7 +25,7 @@ public class Bishop : Piece
 
 	public override bool hasMove(Cell start, Cell end) 
 	{
-		if (end.currentPiece.white == start.currentPiece.white)
+		if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
         {
             return false;
         }

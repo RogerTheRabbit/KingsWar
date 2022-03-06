@@ -26,7 +26,7 @@ public class Pawn : Piece
         int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
         int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
 
-        if (end.currentPiece.white == start.currentPiece.white)
+        if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
         {
             return false;
         }
