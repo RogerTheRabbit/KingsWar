@@ -20,9 +20,11 @@ public class AirRageBuff : Buffs
 
         piece.activeBuffs.Add(this);
         piece.updateSprite();
+        base.spendMana();
 
         return true;
     }
+
     // Start is called before the first frame update
     void Start()
     {

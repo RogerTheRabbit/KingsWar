@@ -72,8 +72,12 @@ public abstract class Card : EventTrigger
         return turnManager.canPlayCard(card);
     }
 
+    public void spendMana()
+    {
+        turnManager.spendMana(manaCost);
+    }
+
     public abstract bool playCard(Cell pieceLocation);
-    public abstract void useMana();
 
     public override void OnEndDrag(PointerEventData eventData)
     {

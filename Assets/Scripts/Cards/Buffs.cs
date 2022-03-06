@@ -8,9 +8,7 @@ public class Buffs : Card
     public override bool playCard(Cell pieceLocation) {
         return false;
     }
-    public override void useMana(){
 
-    }
     // Start is called before the first frame update
     void Start()
     {
