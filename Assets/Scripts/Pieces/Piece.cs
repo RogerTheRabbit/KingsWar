@@ -23,6 +23,7 @@ public abstract class Piece : EventTrigger
 
     public List<Buffs> activeBuffs = new List<Buffs>();
     GameObject shield = null;
+    GameObject airRage = null;
 
     public virtual void init(TurnManager turnManager, bool white, PieceManager pieceManager)
 
@@ -78,7 +79,17 @@ public abstract class Piece : EventTrigger
         shieldImage.sprite = Resources.Load<Sprite>("Circle") as Sprite;
         shieldImage.color = new Color(1f, 0.92f, 0.016f, 0.3f);
         shield.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        shield.SetActive(false);
+        shield.SetActive(true);
+
+        activeBuffs.Add(new HolyProtectionBuff());
+
+        airRage = new GameObject("airRage");
+        airRage.transform.SetParent(this.transform);
+        Image airRageImage = airRage.AddComponent<Image>();
+        airRageImage.sprite = Resources.Load<Sprite>("Air-Rage") as Sprite;
+        airRageImage.color = new Color(1f, 1f, 1f, 0.4f);
+        airRage.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        airRage.SetActive(true);
 
     }
 
@@ -95,6 +106,15 @@ public abstract class Piece : EventTrigger
     public virtual void updateSprite()
     {
         if (activeBuffs.Exists(b => b.GetType().Equals(typeof(HolyProtectionBuff))))
+        {
+            shield.SetActive(true);
+        }
+        else
+        {
+            shield.SetActive(false);
+        }
+
+        if (activeBuffs.Exists(b => b.GetType().Equals(typeof(AirRageBuff))))
         {
             shield.SetActive(true);
         }
@@ -193,7 +213,18 @@ public abstract class Piece : EventTrigger
         else
         {
             Piece enemyPiece = targetCell.currentPiece;
-            enemyPiece.health -= this.attack;
+
+            if (enemyPiece.activeBuffs.Exists(b => b.GetType().Equals(typeof(HolyProtectionBuff))))
+            {
+                enemyPiece.activeBuffs.RemoveAll(b => b.GetType().Equals(typeof(HolyProtectionBuff)));
+                enemyPiece.updateSprite();
+            }
+            else
+            {
+                enemyPiece.health -= this.attack;
+            }
+
+            
 
             if (activeBuffs.Exists(b => b.GetType().Equals(typeof(HolyProtectionBuff))))
             {
@@ -221,8 +252,12 @@ public abstract class Piece : EventTrigger
             {
                 startCell.RemovePiece();
             }
-
+            else if (enemyPiece.health > 0 && this.health > 0)
+            {
+                transform.position = startCell.gameObject.transform.position;
+            }
         }
+        turnManager.hasMoved = true;
     }
 
     protected virtual void Move()
@@ -240,8 +275,6 @@ public abstract class Piece : EventTrigger
         // Move on board
         transform.position = startCell.transform.position;
         targetCell = null;
-
-        turnManager.hasMoved = true;
     }
 
     public virtual void Kill()
