@@ -50,18 +50,19 @@ public class Player : MonoBehaviour
     {
         // Create new card object
         GameObject newCardObject = Instantiate(cardPrefab);
+        newCardObject.transform.localScale = new Vector3(125, 125, 125);
         newCardObject.transform.SetParent(transform);
 
-        int cardXPosition = -500;
+        int cardXPosition = -800;
         if (isWhite)
         {
-            cardXPosition = 500;
+            cardXPosition = 800;
         }
 
         // Set scale and position
         newCardObject.transform.localScale = new Vector3(25, 25, 25);
         newCardObject.transform.localRotation = Quaternion.identity;
-        newCardObject.transform.localPosition = new Vector3(cardXPosition, 250 - (150 * cards.Count)%900, 0);
+        newCardObject.transform.localPosition = new Vector3(cardXPosition, 400 - (150 * cards.Count)%900, 0);
 
         System.Random rand = new System.Random();
 
