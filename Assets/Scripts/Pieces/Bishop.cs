@@ -42,7 +42,7 @@ public class Bishop : Piece
         // Check diagonal
         int[] xCords = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
         int[] yCords = Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y);
-        for(int pos = 0; pos < x; pos++) {
+        for(int pos = 0; pos < x - 1; pos++) {
             if(matrixboard[xCords[pos],yCords[pos]].currentPiece != null) {
                     return false;
             }
