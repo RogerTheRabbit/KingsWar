@@ -35,17 +35,22 @@ public abstract class Piece : EventTrigger
         healthTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
         healthTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150);
 
-        GameObject attackTextBox = new GameObject("health");
+        GameObject attackTextBox = new GameObject("attack");
         attackTextBox.transform.SetParent(this.transform);
         attackTextBox.transform.localPosition = new Vector3(-26.5f, -42.9000015f, 0f);
         Text attackText = attackTextBox.AddComponent<Text>();
-        attackText.text = health.ToString();
+        attackText.text = attack.ToString();
         attackText.color = Color.white;
         attackText.fontSize = 120;
         attackText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         attackTextBox.GetComponent<RectTransform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
         attackTextBox.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 150);
 
+    }
+
+    public virtual void updateHealth()
+    {
+        Array.Find(gameObject.GetComponentsInChildren<Text>(), c => c.name.Contains("health")).text = health.ToString();
     }
 
     public virtual void place(Cell cell)
@@ -86,7 +91,7 @@ public abstract class Piece : EventTrigger
 
         if (this.hasMove(startCell, targetCell))
         {
-            Move();
+            action();
         }
         else
         {
@@ -118,6 +123,38 @@ public abstract class Piece : EventTrigger
         }
 
         
+    }
+
+    protected virtual void action()
+    {
+        if (targetCell.currentPiece == null)
+        {
+            Move();
+        }
+        else
+        {
+            Piece enemyPiece = targetCell.currentPiece;
+            enemyPiece.health -= this.attack;
+            this.health -= enemyPiece.attack;
+
+            updateHealth();
+            enemyPiece.updateHealth();
+
+            if (enemyPiece.health <= 0 && this.health <= 0)
+            {
+                targetCell.RemovePiece();
+                startCell.RemovePiece();
+            }
+            else if (enemyPiece.health <= 0 && this.health > 0)
+            {
+                Move();
+            }
+            else if (enemyPiece.health > 0 && this.health <= 0)
+            {
+                startCell.RemovePiece();
+            }
+
+        }
     }
 
     protected virtual void Move()
