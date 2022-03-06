@@ -8,15 +8,14 @@ public class SummonPawn : Summon
     {
         if (pieceLocation.currentPiece == null)
         {
-            if (this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y < 6) {
+            if (this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y > 1) {
                 Piece pawn = this.pieceManager.CreatePiece(typeof(Pawn));
                 pawn.init(turnManager, white, this.pieceManager);
                 pawn.place(pieceLocation);
                 this.useMana();
                 return true;
             }
-            else if (!this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y > 1) {
-
+            else if (!this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y < 6) {
                 Piece pawn = this.pieceManager.CreatePiece(typeof(Pawn));
                 pawn.init(turnManager, white, this.pieceManager);
                 pawn.place(pieceLocation);
@@ -28,7 +27,7 @@ public class SummonPawn : Summon
     }
     public override void useMana()
     {
-        if(this.turnManager.isWhiteTurn) {
+        if(!this.turnManager.isWhiteTurn) {
             this.turnManager.whitePlayer.playerCurrentMana -= 1;
         } else {
             this.turnManager.blackPlayer.playerCurrentMana -= 1;
