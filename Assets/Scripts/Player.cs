@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     List<Card> cards;
     GameObject cardPrefab;
 
-    private Dictionary<string, Type> pieceLibrary = new Dictionary<string, Type>()
+    private Dictionary<string, Type> cardLibrary = new Dictionary<string, Type>()
     {
         {"SB",  typeof(SummonBishop)},
     };
@@ -31,11 +31,11 @@ public class Player : MonoBehaviour
         newCardObject.transform.SetParent(transform);
 
         // Set scale and position
-        newCardObject.transform.localScale = new Vector3(1, 1, 1);
+        newCardObject.transform.localScale = new Vector3(25, 25, 25);
         newCardObject.transform.localRotation = Quaternion.identity;
 
         // Store new piece
-        Card newCard = (Card)newCardObject.AddComponent(pieceLibrary["SB"]);
+        Card newCard = (Card)newCardObject.AddComponent(cardLibrary["SB"]);
         cards.Add(newCard);
         
     }

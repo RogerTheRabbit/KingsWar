@@ -1,9 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SummonBishop : Summon
 {
+    public override void init(TurnManager turnManager, bool white)
+    {
+        base.init(turnManager, white);
+        base.manaCost = 3;
+
+    }
 
     public override bool playCard(Cell pieceLocation)
     {

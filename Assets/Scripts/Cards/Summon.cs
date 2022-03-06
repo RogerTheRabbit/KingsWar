@@ -5,9 +5,8 @@ using UnityEngine;
 public abstract class Summon : Card
 {
 
-
-    // Start is called before the first frame update
-    void Start()
+        // Start is called before the first frame update
+        void Start()
     {
         
     }
