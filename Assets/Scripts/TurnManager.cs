@@ -42,7 +42,26 @@ public class TurnManager : MonoBehaviour
 
     public void endTurn()
     {
+        unFreeze();
         isWhiteTurn = !isWhiteTurn;
         turnStart();
+    }
+
+    public void unFreeze()
+    {
+        foreach (Cell cell in board.mAllCells)
+        {
+            if (isWhiteTurn && cell.currentPiece != null && cell.currentPiece.white)
+            {
+                cell.currentPiece.activeBuffs.RemoveAll(b => b.GetType().Equals(typeof(IceDeBuff)));
+                cell.currentPiece.updateSprite();
+            }
+
+            if (!isWhiteTurn && cell.currentPiece != null && !cell.currentPiece.white)
+            {
+                cell.currentPiece.activeBuffs.RemoveAll(b => b.GetType().Equals(typeof(IceDeBuff)));
+                cell.currentPiece.updateSprite();
+            }
+        }
     }
 }

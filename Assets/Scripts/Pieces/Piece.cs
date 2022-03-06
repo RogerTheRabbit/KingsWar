@@ -24,7 +24,9 @@ public abstract class Piece : EventTrigger
     public List<Buffs> activeBuffs = new List<Buffs>();
     GameObject shield = null;
     GameObject airRage = null;
+    GameObject frozen = null;
 
+    public bool frozenState;
     public bool airRageMove = false;
 
     public virtual void init(TurnManager turnManager, bool white, PieceManager pieceManager)
@@ -83,6 +85,14 @@ public abstract class Piece : EventTrigger
         shield.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         shield.SetActive(false);
 
+        frozen = new GameObject("shield");
+        frozen.transform.SetParent(this.transform);
+        Image frozenImage = frozen.AddComponent<Image>();
+        frozenImage.sprite = Resources.Load<Sprite>("Circle") as Sprite;
+        frozenImage.color = new Color(1f, 0.92f, 0.016f, 0.3f);
+        frozen.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        frozen.SetActive(true);
+
         airRage = new GameObject("airRage");
         airRage.transform.SetParent(this.transform);
         Image airRageImage = airRage.AddComponent<Image>();
@@ -124,6 +134,17 @@ public abstract class Piece : EventTrigger
             airRageMove = false;
             airRage.SetActive(false);
         }
+
+        if (activeBuffs.Exists(b => b.GetType().Equals(typeof(IceDeBuff))))
+        {
+            frozenState = true;
+            frozen.SetActive(true);
+        }
+        else
+        {
+            frozenState = false;
+            frozen.SetActive(false);
+        }
     }
 
     public virtual void place(Cell cell)
@@ -140,6 +161,11 @@ public abstract class Piece : EventTrigger
 
     // Checks that the user's move is valid. Ensure that there are no pieces inbetween that inhibits movement and that it is not sharing a spot with a friendly piece.
     public virtual bool hasMove(Cell start, Cell end) {
+        if (frozenState)
+        {
+            return false;
+        }
+
         if(turnManager.hasMoved) {
             return false;
         }
