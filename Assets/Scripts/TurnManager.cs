@@ -7,7 +7,7 @@ public class TurnManager : MonoBehaviour
     Player whitePlayer;
     Player blackPlayer;
     bool isWhiteTurn;
-    bool hasMoved;
+    public bool hasMoved {get; set;}
 
     void Create(PieceManager pieceManager)
     {

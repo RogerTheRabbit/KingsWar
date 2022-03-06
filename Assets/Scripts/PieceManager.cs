@@ -29,13 +29,13 @@ public class PieceManager : MonoBehaviour
         "R", "KN", "B", "Q", "K", "B", "KN", "R"
     };
 
-    public void Setup(Board board)
+    public void Setup(Board board, TurnManager turnManager)
     {
         // Create white pieces
-        mWhitePieces = CreatePieces(Color.white, new Color32(80, 124, 159, 255), true);
+        mWhitePieces = CreatePieces(Color.white, new Color32(80, 124, 159, 255), true, turnManager);
 
         // Create place pieces
-        mBlackPieces = CreatePieces(Color.black, new Color32(210, 95, 64, 255), false);
+        mBlackPieces = CreatePieces(Color.black, new Color32(210, 95, 64, 255), false, turnManager);
 
         // Place pieces
         PlacePieces(1, 0, mWhitePieces, board);
@@ -46,7 +46,7 @@ public class PieceManager : MonoBehaviour
         //SwitchSides(Color.black);
     }
 
-    private List<Piece> CreatePieces(Color teamColor, Color32 spriteColor, bool white)
+    private List<Piece> CreatePieces(Color teamColor, Color32 spriteColor, bool white, TurnManager turnManager)
     {
         List<Piece> newPieces = new List<Piece>();
 
@@ -61,7 +61,7 @@ public class PieceManager : MonoBehaviour
             newPieces.Add(newPiece);
 
             // Setup
-            newPiece.init(this, white);
+            newPiece.init(turnManager, white);
         }
 
         return newPieces;

@@ -10,16 +10,16 @@ public abstract class Piece : EventTrigger
     public Cell startCell = null;
     public Cell endCell = null;
     public Cell targetCell = null;
-    public PieceManager pieceManager = null;
+    public TurnManager turnmanager = null;
     public bool white = false;
     public bool killed = false;
 
-    public virtual void init(PieceManager pieceManager, bool white)
+    public virtual void init(TurnManager turnmanager, bool white)
     {
 
         GetComponent<Image>().color = Color.clear;
 
-        this.pieceManager = pieceManager;
+        this.turnmanager = turnmanager;
         this.white = white;
     }
 
@@ -36,7 +36,23 @@ public abstract class Piece : EventTrigger
     }
 
     // Checks that the user's move is valid. Ensure that there are no pieces inbetween that inhibits movement and that it is not sharing a spot with a friendly piece.
-    public abstract bool hasMove(Cell start, Cell end);
+    public virtual bool hasMove(Cell start, Cell end) {
+        if (end == null || start == null) {
+            return false;
+        }
+
+        if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
+        {
+            return false;
+        }
+
+        // Not a valid move if the piece doesn't move.
+        if(start.mBoardPosition.x - end.mBoardPosition.x == 0 && start.mBoardPosition.y - end.mBoardPosition.y == 0) {
+            return false;
+        }
+
+        return true;
+    }
 
     public override void OnEndDrag(PointerEventData eventData)
     {
@@ -55,7 +71,7 @@ public abstract class Piece : EventTrigger
         
 
         // End turn
-        //pieceManager.SwitchSides(mColor);
+        //turnmanager.SwitchSides(mColor);
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -96,6 +112,8 @@ public abstract class Piece : EventTrigger
         // Move on board
         transform.position = startCell.transform.position;
         targetCell = null;
+
+        turnmanager.hasMoved = false;
     }
 
     public virtual void Kill()

@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class Bishop : Piece
 {
 
-	public override void init(PieceManager pieceManager, bool white)
+	public override void init(TurnManager turnManager, bool white)
     {
-        base.init(pieceManager, white);
+        base.init(turnmanager, white);
         string resourcePath = null;
         string resourceName = null;
         if (white)
@@ -37,12 +37,7 @@ public class Bishop : Piece
 
 	public override bool hasMove(Cell start, Cell end) 
 	{
-		if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
-        {
-            return false;
-        }
-
-        if(start.mBoardPosition.x - end.mBoardPosition.x == 0 && start.mBoardPosition.y - end.mBoardPosition.y == 0) {
+        if (!base.hasMove(start, end)) {
             return false;
         }
 
@@ -59,7 +54,7 @@ public class Bishop : Piece
         // Check diagonal
         int[] xCords = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
         int[] yCords = Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y);
-        for(int pos = 0; pos < x; pos++) {
+        for(int pos = 0; pos < x - 1; pos++) {
             if(matrixboard[xCords[pos],yCords[pos]].currentPiece != null) {
                     return false;
             }
