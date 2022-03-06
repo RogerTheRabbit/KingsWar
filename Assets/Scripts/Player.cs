@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     bool isWhite;
     TurnManager turnManager;
     public PieceManager pieceManager;
-    public HashSet<Card> cards;
+    public List<Card> cards;
     GameObject cardPrefab;
 
     private Dictionary<string, Type> cardLibrary = new Dictionary<string, Type>()
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         this.turnManager = turnManager;
         this.cardPrefab = cardPrefab;
         this.pieceManager = pieceManager;
-        cards = new HashSet<Card>();
+        cards = new List<Card>();
         this.isWhite = isWhite;
     }
 
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         // Set scale and position
         newCardObject.transform.localScale = new Vector3(25, 25, 25);
         newCardObject.transform.localRotation = Quaternion.identity;
-        newCardObject.transform.localPosition = new Vector3(cardXPosition, 250 - 150 * cards.Count, 0);
+        newCardObject.transform.localPosition = new Vector3(cardXPosition, 250 - (150 * cards.Count)%900, 0);
 
         // Store new piece
         Card newCard = (Card)newCardObject.AddComponent(cardLibrary["SB"]);
