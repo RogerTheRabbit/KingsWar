@@ -8,15 +8,17 @@ public abstract class Card : EventTrigger
     public int manaCost;
 
     public TurnManager turnManager;
+    public PieceManager pieceManager;
     private Cell targetCell;
     public bool white = false;
 
-    public virtual void init(TurnManager turnmanager, bool white)
+    public virtual void init(TurnManager turnmanager, PieceManager pieceManager,bool white)
     {
 
         // GetComponent<Image>().color = Color.clear;
 
         this.turnManager = turnmanager;
+        this.pieceManager = pieceManager;
         this.white = white;
 
         GameObject manaPanel = new GameObject("manaPanel");

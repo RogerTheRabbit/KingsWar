@@ -9,8 +9,8 @@ public class AddStatBuff : Buffs
     public int addAttack;
 
 
-    public void init(TurnManager turnManager, bool white, int manaCost, int addHealth, int addAttack) {
-        base.init(turnManager, white);
+    public void init(TurnManager turnManager, PieceManager pieceManager, bool white, int manaCost, int addHealth, int addAttack) {
+        base.init(turnManager, pieceManager, white);
         this.manaCost = manaCost;
         this.addHealth = addHealth;
         this.addAttack = addAttack;

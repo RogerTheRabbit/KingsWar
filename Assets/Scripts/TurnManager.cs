@@ -5,6 +5,7 @@ public class TurnManager : MonoBehaviour
     public Player whitePlayer;
     public Player blackPlayer;
     public GameObject cardPrefab;
+    public PieceManager pieceManager;
     public bool isWhiteTurn {get; set;}
     public bool hasMoved {get; set;}
 
@@ -13,8 +14,8 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         Debug.Log(whitePlayer);
-        whitePlayer.Setup(this, cardPrefab, true);
-        blackPlayer.Setup(this, cardPrefab, false);
+        whitePlayer.Setup(this, pieceManager, cardPrefab, true);
+        blackPlayer.Setup(this, pieceManager,cardPrefab, false);
         isWhiteTurn = false;
         hasMoved = false;
 

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int playerMana;
     bool isWhite;
     TurnManager turnManager;
+    public PieceManager pieceManager;
     List<Card> cards;
     GameObject cardPrefab;
 
@@ -17,11 +18,12 @@ public class Player : MonoBehaviour
         {"SB",  typeof(SummonBishop)},
     };
 
-    public void Setup(TurnManager turnManager, GameObject cardPrefab, bool isWhite)
+    public void Setup(TurnManager turnManager, PieceManager pieceManager, GameObject cardPrefab, bool isWhite)
     {
         playerMana = 0;
         this.turnManager = turnManager;
         this.cardPrefab = cardPrefab;
+        this.pieceManager = pieceManager;
         cards = new List<Card>();
         this.isWhite = isWhite;
     }
@@ -45,7 +47,7 @@ public class Player : MonoBehaviour
 
         // Store new piece
         Card newCard = (Card)newCardObject.AddComponent(cardLibrary["SB"]);
-        newCard.init(turnManager, isWhite);
+        newCard.init(turnManager, pieceManager, isWhite);
         cards.Add(newCard);
         
     }

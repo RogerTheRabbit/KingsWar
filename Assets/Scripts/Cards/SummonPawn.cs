@@ -9,12 +9,17 @@ public class SummonPawn : Summon
         if (pieceLocation.currentPiece == null)
         {
             if (this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y < 6) {
-                new Pawn().place(pieceLocation);
+                Piece pawn = this.pieceManager.CreatePiece(typeof(Pawn));
+                pawn.init(turnManager, white, this.pieceManager);
+                pawn.place(pieceLocation);
                 this.useMana();
                 return true;
             }
             else if (!this.turnManager.isWhiteTurn && pieceLocation.mBoardPosition.y > 1) {
-                new Pawn().place(pieceLocation);
+
+                Piece pawn = this.pieceManager.CreatePiece(typeof(Pawn));
+                pawn.init(turnManager, white, this.pieceManager);
+                pawn.place(pieceLocation);
                 this.useMana();
                 return true;
             }

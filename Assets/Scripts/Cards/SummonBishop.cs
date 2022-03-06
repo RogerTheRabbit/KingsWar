@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class SummonBishop : Summon
 {
-    public override void init(TurnManager turnManager, bool white)
+    public override void init(TurnManager turnManager, PieceManager pieceManager, bool white)
     {
-        base.init(turnManager, white);
+        base.init(turnManager, pieceManager, white);
         base.manaCost = 3;
 
     }
@@ -14,7 +14,9 @@ public class SummonBishop : Summon
         //TODO Also check that the cell is not in the back 2 ranks once turnmanager is done
         if (pieceLocation.currentPiece == null)
         {
-            new Bishop().place(pieceLocation);
+            Piece bishop = this.pieceManager.CreatePiece(typeof(Bishop));
+            bishop.init(turnManager, white, this.pieceManager);
+            bishop.place(pieceLocation);
             return true;
         }
         return false;

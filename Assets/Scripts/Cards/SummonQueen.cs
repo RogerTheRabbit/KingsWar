@@ -10,7 +10,9 @@ public class SummonQueen : Summon
         //TODO Also check that the cell is not in the back 2 ranks once turnmanager is done
         if (pieceLocation.currentPiece == null)
         {
-            new Queen().place(pieceLocation);
+            Piece queen = this.pieceManager.CreatePiece(typeof(Queen));
+            queen.init(turnManager, white, this.pieceManager);
+            queen.place(pieceLocation);
             return true;
         }
         return false;

@@ -10,7 +10,9 @@ public class SummonKnight : Summon
         //TODO Also check that the cell is not in the back 2 ranks once turnmanager is done
         if (pieceLocation.currentPiece == null)
         {
-            new Knight().place(pieceLocation);
+            Piece knight = this.pieceManager.CreatePiece(typeof(Knight));
+            knight.init(turnManager, white, this.pieceManager);
+            knight.place(pieceLocation);
             return true;
         }
         return false;
