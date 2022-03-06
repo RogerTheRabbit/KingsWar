@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     static int maxMana = 12;
-    static int maxHandSize = 10;
+    static int maxHandSize = 5;
     public int playerCurrentMana;
     public int turnMaxMana;
     bool isWhite;

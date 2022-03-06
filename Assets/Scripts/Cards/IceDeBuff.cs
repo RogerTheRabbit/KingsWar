@@ -20,6 +20,7 @@ public class IceDeBuff : Buffs
 
         piece.activeBuffs.Add(this);
         piece.updateSprite();
+        base.spendMana();
 
         return true;
     }

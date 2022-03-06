@@ -27,6 +27,7 @@ public class AddStatBuff : Buffs
         piece.health += addHealth;
         piece.updateHealth();
         piece.updateAttack();
+        base.spendMana();
 
         return true;
 

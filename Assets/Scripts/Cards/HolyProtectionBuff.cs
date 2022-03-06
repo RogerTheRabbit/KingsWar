@@ -23,7 +23,7 @@ public class HolyProtectionBuff : Buffs
 
         piece.activeBuffs.Add(this);
         piece.updateSprite();
-        
+        base.spendMana();
 
         return true;
 
