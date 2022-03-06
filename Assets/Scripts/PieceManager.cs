@@ -81,7 +81,7 @@ public class PieceManager : MonoBehaviour
             newPieces.Add(newPiece);
 
             // Setup
-            newPiece.init(turnManager, white);
+            newPiece.init(turnManager, white, this);
         }
 
         return newPieces;
@@ -99,7 +99,7 @@ public class PieceManager : MonoBehaviour
         }
     }
 
-    private Piece CreatePiece(Type pieceType)
+    public Piece CreatePiece(Type pieceType)
     {
         // Create new object
         GameObject newPieceObject = Instantiate(mPiecePrefab);

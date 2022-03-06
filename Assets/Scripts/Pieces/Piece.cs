@@ -14,15 +14,18 @@ public abstract class Piece : EventTrigger
     public Cell endCell = null;
     public Cell targetCell = null;
     public TurnManager turnManager = null;
+
+    public PieceManager pieceManager = null;
     public bool white = false;
     public bool killed = false;
 
-    public virtual void init(TurnManager turnManager, bool white)
+    public virtual void init(TurnManager turnManager, bool white, PieceManager pieceManager)
     {
         GetComponent<Image>().color = Color.clear;
 
         this.turnManager = turnManager;
         this.white = white;
+        this.pieceManager = pieceManager;
 
         GameObject healthPanel = new GameObject("healthPanel");
         healthPanel.transform.SetParent(this.transform);
