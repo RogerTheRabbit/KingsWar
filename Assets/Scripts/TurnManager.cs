@@ -1,17 +1,14 @@
 using UnityEngine;
 
-public class TurnManager : MonoBehaviour
+public class TurnManager
 {
-
-    PieceManager pieceManager;
     Player whitePlayer;
     Player blackPlayer;
     bool isWhiteTurn;
     public bool hasMoved {get; set;}
 
-    void Create(PieceManager pieceManager)
+    public TurnManager()
     {
-        this.pieceManager = pieceManager;
         whitePlayer = new Player();
         blackPlayer = new Player();
         isWhiteTurn = false;
@@ -42,17 +39,5 @@ public class TurnManager : MonoBehaviour
     void endTurn()
     {
         isWhiteTurn = !isWhiteTurn;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

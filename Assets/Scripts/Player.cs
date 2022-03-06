@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player
 {
     static int maxMana = 12;
     static int maxHandSize = 10;
@@ -21,17 +21,5 @@ public class Player : MonoBehaviour
     public void drawRandomCard()
     {
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
