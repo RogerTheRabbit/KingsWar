@@ -9,6 +9,7 @@ public abstract class Piece : EventTrigger
     public int attack;
     public int health;
     
+    public bool hasMoved;
     public Cell startCell = null;
     public Cell endCell = null;
     public Cell targetCell = null;

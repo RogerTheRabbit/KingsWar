@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class King : Piece
 {
     // Start is called before the first frame update
-    private bool hasMoved;
 
     public override void init(TurnManager turnManager, bool white)
     {
@@ -50,20 +49,20 @@ public class King : Piece
         Cell[,] matrixboard = start.mBoard.mAllCells;
 
         // Check castle
-        if (xDelta == 2 && !this.hasMoved ) {
+        if (xDelta == 2 && !this.hasMoved) {
             foreach(int i in Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x)){
                 if(matrixboard[i,start.mBoardPosition.y].currentPiece != null) {
                     return false;
                 }
             }
             Piece rook = matrixboard[end.mBoardPosition.x + 1,end.mBoardPosition.y].currentPiece;
-            if (rook != null && rook.GetType().Equals(typeof(Rook))) {
+            if (rook != null && rook.GetType().Equals(typeof(Rook)) && !rook.hasMoved) {
                 this.castle("King", matrixboard, end);
                 this.hasMoved = true;
                 return true;
             }
             rook = matrixboard[end.mBoardPosition.x - 2, end.mBoardPosition.y].currentPiece;
-            if (rook != null && rook.GetType().Equals(typeof(Rook))) {
+            if (rook != null && rook.GetType().Equals(typeof(Rook)) && !rook.hasMoved) {
                 this.castle("Queen", matrixboard, end);
                 this.hasMoved = true;
                 return true;
