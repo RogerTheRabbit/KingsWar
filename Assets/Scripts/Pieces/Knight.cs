@@ -9,7 +9,7 @@ public class Knight : Piece
 
     public override void init(TurnManager turnManager, bool white)
     {
-        base.init(turnmanager, white);
+        base.init(turnManager, white);
         string resourcePath = null;
         string resourceName = null;
         if (white)

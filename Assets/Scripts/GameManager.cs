@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         board.Create();
+        turnManager = new TurnManager();
         pieceManager.Setup(board, turnManager);
     }
 
