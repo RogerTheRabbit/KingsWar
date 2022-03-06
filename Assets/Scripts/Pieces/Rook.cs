@@ -3,14 +3,13 @@ using UnityEngine.UI;
 
 public class Rook : Piece
 {
-    // Start is called before the first frame update
 
     public override void init(TurnManager turnManager, bool white)
     {
-
         base.init(turnManager, white);
         string resourcePath = null;
         string resourceName = null;
+        this.hasMoved = false;
         if (white)
         {
             resourcePath = "Pieces/White/";
@@ -62,6 +61,9 @@ public class Rook : Piece
         }
         bool x = xDelta == 0;
         bool y = yDelta == 0;
+        if (!hasMoved) {
+            hasMoved = (x && !y) || (!x && y);
+        }
         return (x && !y) || (!x && y);
     }
     void Start()
