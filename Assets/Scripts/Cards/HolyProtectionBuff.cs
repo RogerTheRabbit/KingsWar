@@ -9,7 +9,7 @@ public class HolyProtectionBuff : Buffs
 
     public void init(TurnManager turnManager, bool white, int manaCost)
     {
-        base.init(turnManager, white, manaCost);
+        base.init(turnManager, white);
         this.manaCost = manaCost;
     }
     public override bool playCard(Cell pieceLocation)
