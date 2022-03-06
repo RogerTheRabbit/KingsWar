@@ -27,15 +27,15 @@ public class Pawn : Piece
             return false;
         }
 
-        int x = Mathf.Abs(start.mBoardPosition.x - end.mBoardPosition.x);
-        int y = Mathf.Abs(start.mBoardPosition.y - end.mBoardPosition.y);
+        int x = start.mBoardPosition.x - end.mBoardPosition.x;
+        int y = start.mBoardPosition.y - end.mBoardPosition.y;
 
         Cell[,] matrixboard = start.mBoard.mAllCells;
         // Checks white pawn moves
         if(start.currentPiece.white) {
             // We are not attacking
             // Check a single forward move
-            if (y == 1 && matrixboard[start.mBoardPosition.x, end.mBoardPosition.y].currentPiece == null) {
+            if (y == - 1 && x == 0 && matrixboard[start.mBoardPosition.x, end.mBoardPosition.y].currentPiece == null) {
                 return true;
             }
             else if (x == 0) {
@@ -47,7 +47,7 @@ public class Pawn : Piece
                 }
             } 
             // Attack move
-            else if (x == 1 && y == 1) {
+            else if (Mathf.Abs(x) == 1 && y == -1) {
                 if (matrixboard[end.mBoardPosition.x, end.mBoardPosition.y].currentPiece != null && 
                 !matrixboard[end.mBoardPosition.x, end.mBoardPosition.y].currentPiece.white) {
                     return true;
@@ -61,7 +61,7 @@ public class Pawn : Piece
         else if(!start.currentPiece.white) {
             // We are not attacking
             // Check a single forward move
-            if (y == 1 && matrixboard[start.mBoardPosition.x, end.mBoardPosition.y].currentPiece == null) {
+            if (y == 1 && x == 0 && matrixboard[start.mBoardPosition.x, end.mBoardPosition.y].currentPiece == null) {
                 return true;
             }
             else if (x == 0) {
@@ -73,9 +73,9 @@ public class Pawn : Piece
                 }
             } 
             // Attack move
-            else if (x == 1 && y == 1) {
+            else if (Mathf.Abs(x) == 1 && y == 1) {
                 if (matrixboard[end.mBoardPosition.x, end.mBoardPosition.y].currentPiece != null && 
-                !matrixboard[end.mBoardPosition.x, end.mBoardPosition.y].currentPiece.white) {
+                matrixboard[end.mBoardPosition.x, end.mBoardPosition.y].currentPiece.white) {
                     return true;
                 }
             }
