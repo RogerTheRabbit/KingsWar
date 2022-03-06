@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class TurnManager
+public class TurnManager : MonoBehaviour
 {
-    Player whitePlayer;
-    Player blackPlayer;
+    public Player whitePlayer;
+    public Player blackPlayer;
+    public GameObject cardPrefab;
     bool isWhiteTurn;
     public bool hasMoved {get; set;}
 
-    public TurnManager()
+    void Start()
     {
-        whitePlayer = new Player();
-        blackPlayer = new Player();
+        Debug.Log(whitePlayer);
+        whitePlayer.Setup(this, cardPrefab);
+        blackPlayer.Setup(this, cardPrefab);
         isWhiteTurn = false;
         hasMoved = false;
 
