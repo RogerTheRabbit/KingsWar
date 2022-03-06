@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public List<Card> cards;
     GameObject cardPrefab;
 
-    private Text[] manaText;
+    public Text[] manaText;
 
     private Dictionary<string, Type> cardLibrary = new Dictionary<string, Type>()
     {
@@ -67,6 +67,45 @@ public class Player : MonoBehaviour
 
         // Store new piece
         Card newCard = (Card)newCardObject.AddComponent(cardLibrary[cardKeys[rand.Next(0, cardKeys.Count)]]);
+        
+        System.Random random = new System.Random();
+        newCard.manaCost = random.Next(1, 8);
+        if (newCard.GetType().Equals(typeof(SummonBishop))) {
+
+            newCard.init(turnManager, pieceManager, isWhite);
+        }
+        if (newCard.GetType().Equals(typeof(SummonKnight))) {
+
+            newCard.init(turnManager, pieceManager, isWhite);
+        }
+        if (newCard.GetType().Equals(typeof(SummonPawn))) {
+
+            newCard.init(turnManager, pieceManager, isWhite);
+        }
+        if (newCard.GetType().Equals(typeof(SummonQueen))) {
+
+            newCard.init(turnManager, pieceManager, isWhite);
+        }
+        if (newCard.GetType().Equals(typeof(SummonRook))) {
+
+            newCard.init(turnManager, pieceManager, isWhite);
+        }
+        if (newCard.GetType().Equals(typeof(IceDeBuff))) {
+
+            ((IceDeBuff)newCard).init(turnManager, pieceManager, isWhite, random.Next(1, 10));
+        }
+        if (newCard.GetType().Equals(typeof(HolyProtectionBuff))) {
+
+            ((HolyProtectionBuff)newCard).init(turnManager, pieceManager, isWhite, random.Next(1, 10));
+        }
+        if (newCard.GetType().Equals(typeof(AirRageBuff))) {
+
+            ((AirRageBuff)newCard).init(turnManager, pieceManager, isWhite, random.Next(1, 10));
+        }
+        if (newCard.GetType().Equals(typeof(AddStatBuff))) {
+
+            ((AddStatBuff)newCard).init(turnManager, pieceManager, isWhite, random.Next(1, 10), random.Next(1, 5), random.Next(1, 5));
+        }
         newCard.init(turnManager, pieceManager, isWhite);
         cards.Add(newCard);
         

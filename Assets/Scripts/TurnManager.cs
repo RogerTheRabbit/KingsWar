@@ -56,10 +56,12 @@ public class TurnManager : MonoBehaviour
         if (isWhiteTurn)
         {
             whitePlayer.playerCurrentMana -= mana;
+            whitePlayer.manaText[0].text = whitePlayer.playerCurrentMana.ToString();
         }
         else
         {
             blackPlayer.playerCurrentMana -= mana;
+            blackPlayer.manaText[1].text = blackPlayer.playerCurrentMana.ToString();
         }
 
     }
