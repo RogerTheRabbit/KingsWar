@@ -7,9 +7,9 @@ public class Knight : Piece
 {
     // Start is called before the first frame update
 
-    public override void init(PieceManager pieceManager, bool white)
+    public override void init(TurnManager turnManager, bool white)
     {
-        base.init(pieceManager, white);
+        base.init(turnmanager, white);
         Sprite[] all = Resources.LoadAll<Sprite>("Pieces/Black/");
         foreach (var s in all)
         {
@@ -25,8 +25,7 @@ public class Knight : Piece
 
     public override bool hasMove(Cell start, Cell end)
     {
-        if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
-        {
+        if (!base.hasMove(start, end)) {
             return false;
         }
 

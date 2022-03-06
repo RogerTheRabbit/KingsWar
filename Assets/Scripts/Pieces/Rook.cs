@@ -5,9 +5,9 @@ public class Rook : Piece
 {
     // Start is called before the first frame update
 
-    public override void init(PieceManager pieceManager, bool white)
+    public override void init(TurnManager turnManager, bool white)
     {
-        base.init(pieceManager, white);
+        base.init(turnmanager, white);
         Sprite[] all = Resources.LoadAll<Sprite>("Pieces/Black/");
         foreach (var s in all)
         {
@@ -23,13 +23,7 @@ public class Rook : Piece
 
     public override bool hasMove(Cell start, Cell end)
     {
-        if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
-        {
-            return false;
-        }
-
-        // Not a valid move if the piece doesn't move.
-        if(start.mBoardPosition.x - end.mBoardPosition.x == 0 && start.mBoardPosition.y - end.mBoardPosition.y == 0) {
+        if (!base.hasMove(start, end)) {
             return false;
         }
 

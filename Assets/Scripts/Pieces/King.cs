@@ -7,9 +7,9 @@ public class King : Piece
 {
     // Start is called before the first frame update
 
-    public override void init(PieceManager pieceManager, bool white)
+    public override void init(TurnManager turnManager, bool white)
     {
-        base.init(pieceManager, white);
+        base.init(turnmanager, white);
         Sprite[] all = Resources.LoadAll<Sprite>("Pieces/Black/");
         foreach (var s in all)
         {
@@ -25,13 +25,7 @@ public class King : Piece
 
     public override bool hasMove(Cell start, Cell end)
     {
-        if (end.currentPiece != null && end.currentPiece.white == start.currentPiece.white)
-        {
-            return false;
-        }
-
-        // Not a valid move if the piece doesn't move.
-        if(start.mBoardPosition.x - end.mBoardPosition.x == 0 && start.mBoardPosition.y - end.mBoardPosition.y == 0) {
+        if (!base.hasMove(start, end)) {
             return false;
         }
 
@@ -49,7 +43,7 @@ public class King : Piece
             // Check diagonal
             int[] xCords = Utilities.getRangeExclusive(start.mBoardPosition.x, end.mBoardPosition.x);
             int[] yCords = Utilities.getRangeExclusive(start.mBoardPosition.y, end.mBoardPosition.y);
-            for(int pos = 0; pos < xDelta; pos++) {
+            for(int pos = 0; pos < xDelta - 1; pos++) {
                 if(matrixboard[xCords[pos],yCords[pos]].currentPiece != null) {
                         return false;
                 }
@@ -75,7 +69,7 @@ public class King : Piece
 
         bool x = xDelta == 0;
         bool y = yDelta == 0;
-        return (x && !y) || (!x && y) || (x == y);
+        return (x && !y) || (!x && y) || (xDelta == yDelta);
     }
     void Start()
     {
