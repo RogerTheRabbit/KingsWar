@@ -7,6 +7,7 @@ public class SummonQueen : Summon
 
     public override void init(TurnManager turnManager, PieceManager pieceManager, bool white)
     {
+        text = "Summon a 9-9 Queen";
         base.init(turnManager, pieceManager, white);
         base.manaCost = 9;
     }

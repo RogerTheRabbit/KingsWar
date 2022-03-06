@@ -6,6 +6,7 @@ public class SummonRook : Summon
 {
         public override void init(TurnManager turnManager, PieceManager pieceManager, bool white)
     {
+        text = "Summon a 5-5 Rook";
         base.init(turnManager, pieceManager, white);
         base.manaCost = 5;
     }

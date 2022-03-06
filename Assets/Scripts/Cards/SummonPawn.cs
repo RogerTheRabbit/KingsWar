@@ -6,6 +6,7 @@ public class SummonPawn : Summon
 {
     public override void init(TurnManager turnManager, PieceManager pieceManager, bool white)
     {
+        text = "Summon a 1-1 Pawn";
         base.init(turnManager, pieceManager, white);
         base.manaCost = 1;
     }
