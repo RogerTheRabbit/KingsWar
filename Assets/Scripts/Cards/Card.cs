@@ -7,11 +7,11 @@ public abstract class Card : EventTrigger
 {
     public int manaCost;
 
-    private TurnManager turnManager;
+    public TurnManager turnManager;
     private Cell targetCell;
     public bool white = false;
 
-    public virtual void init(TurnManager turnmanager, bool white, int manaCost)
+    public virtual void init(TurnManager turnmanager, bool white)
     {
 
         GetComponent<Image>().color = Color.clear;
