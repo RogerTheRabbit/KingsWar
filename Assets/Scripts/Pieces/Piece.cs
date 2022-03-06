@@ -118,6 +118,9 @@ public abstract class Piece : EventTrigger
 
     // Checks that the user's move is valid. Ensure that there are no pieces inbetween that inhibits movement and that it is not sharing a spot with a friendly piece.
     public virtual bool hasMove(Cell start, Cell end) {
+        if(turnManager.hasMoved) {
+            return false;
+        }
 
         if(turnManager.isWhiteTurn == white) {
             return false;
@@ -238,7 +241,7 @@ public abstract class Piece : EventTrigger
         transform.position = startCell.transform.position;
         targetCell = null;
 
-        turnManager.hasMoved = false;
+        turnManager.hasMoved = true;
     }
 
     public virtual void Kill()

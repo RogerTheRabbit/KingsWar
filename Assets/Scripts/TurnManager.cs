@@ -41,5 +41,6 @@ public class TurnManager : MonoBehaviour
     public void endTurn()
     {
         isWhiteTurn = !isWhiteTurn;
+        turnStart();
     }
 }
