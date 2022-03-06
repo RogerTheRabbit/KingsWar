@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("TESTTT");
-        Debug.Log(board);
         board.Create();
         pieceManager.Setup(board, turnManager);
     }
