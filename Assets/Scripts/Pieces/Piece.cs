@@ -109,7 +109,6 @@ public abstract class Piece : EventTrigger
         foreach (Cell cell in startCell.mBoard.mAllCells) {
             if (RectTransformUtility.RectangleContainsScreenPoint(cell.mRectTransform, Input.mousePosition))
             {
-                Debug.Log("HERE");
                 // If the mouse is within a valid cell, get it, and break.
                 targetCell = cell;
                 break;
