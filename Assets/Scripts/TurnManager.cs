@@ -11,8 +11,8 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         Debug.Log(whitePlayer);
-        whitePlayer.Setup(this, cardPrefab);
-        blackPlayer.Setup(this, cardPrefab);
+        whitePlayer.Setup(this, cardPrefab, true);
+        blackPlayer.Setup(this, cardPrefab, false);
         isWhiteTurn = false;
         hasMoved = false;
 

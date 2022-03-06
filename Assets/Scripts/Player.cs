@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     static int maxMana = 12;
     static int maxHandSize = 10;
     public int playerMana;
+    bool isWhite;
     TurnManager turnManager;
     List<Card> cards;
     GameObject cardPrefab;
@@ -16,12 +17,13 @@ public class Player : MonoBehaviour
         {"SB",  typeof(SummonBishop)},
     };
 
-    public void Setup(TurnManager turnManager, GameObject cardPrefab)
+    public void Setup(TurnManager turnManager, GameObject cardPrefab, bool isWhite)
     {
         playerMana = 0;
         this.turnManager = turnManager;
         this.cardPrefab = cardPrefab;
         cards = new List<Card>();
+        this.isWhite = isWhite;
     }
 
     public void drawRandomCard()
@@ -30,9 +32,16 @@ public class Player : MonoBehaviour
         GameObject newCardObject = Instantiate(cardPrefab);
         newCardObject.transform.SetParent(transform);
 
+        int cardXPosition = -500;
+        if (isWhite)
+        {
+            cardXPosition = 500;
+        }
+
         // Set scale and position
         newCardObject.transform.localScale = new Vector3(25, 25, 25);
         newCardObject.transform.localRotation = Quaternion.identity;
+        newCardObject.transform.localPosition = new Vector3(cardXPosition, 250 - 150 * cards.Count, 0);
 
         // Store new piece
         Card newCard = (Card)newCardObject.AddComponent(cardLibrary["SB"]);
