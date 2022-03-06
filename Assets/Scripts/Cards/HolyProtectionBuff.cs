@@ -7,9 +7,9 @@ public class HolyProtectionBuff : Buffs
 
 
 
-    public void Create(TurnManager turnManager, int manaCost)
+    public void init(TurnManager turnManager, bool white, int manaCost)
     {
-        base.Create(turnManager);
+        base.init(turnManager, white, manaCost);
         this.manaCost = manaCost;
     }
     public override bool playCard(Cell pieceLocation)

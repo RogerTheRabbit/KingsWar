@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class Rook : Piece
 {
 
-    public override void init(TurnManager turnManager, bool white)
+    public override void init(TurnManager turnManager, bool white, PieceManager pieceManager)
     {
-        base.init(turnManager, white);
+        base.init(turnManager, white, pieceManager);
         string resourcePath = null;
         string resourceName = null;
         this.hasMoved = false;

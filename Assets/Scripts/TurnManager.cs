@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class TurnManager
+public class TurnManager : MonoBehaviour
 {
-    Player whitePlayer;
-    Player blackPlayer;
-    bool isWhiteTurn;
+    public Player whitePlayer;
+    public Player blackPlayer;
+    public GameObject cardPrefab;
+    public bool isWhiteTurn {get; set;}
     public bool hasMoved {get; set;}
 
-    public TurnManager()
+    void Start()
     {
-        whitePlayer = new Player();
-        blackPlayer = new Player();
+        Debug.Log(whitePlayer);
+        whitePlayer.Setup(this, cardPrefab);
+        blackPlayer.Setup(this, cardPrefab);
         isWhiteTurn = false;
         hasMoved = false;
 
@@ -23,7 +25,7 @@ public class TurnManager
         blackPlayer.drawRandomCard();
     }
 
-    void turnStart()
+    public void turnStart()
     {
         hasMoved = false;
         if (isWhiteTurn)
@@ -36,7 +38,7 @@ public class TurnManager
         }
     }
 
-    void endTurn()
+    public void endTurn()
     {
         isWhiteTurn = !isWhiteTurn;
     }

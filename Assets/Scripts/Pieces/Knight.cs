@@ -7,9 +7,9 @@ public class Knight : Piece
 {
     // Start is called before the first frame update
 
-    public override void init(TurnManager turnManager, bool white)
+    public override void init(TurnManager turnManager, bool white, PieceManager pieceManager)
     {
-        base.init(turnManager, white);
+        base.init(turnManager, white, pieceManager);
         string resourcePath = null;
         string resourceName = null;
         if (white)

@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
     public Board board;
     public PieceManager pieceManager;
     public TurnManager turnManager;
+    public GameObject cardPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         board.Create();
-        turnManager = new TurnManager();
         pieceManager.Setup(board, turnManager);
     }
 

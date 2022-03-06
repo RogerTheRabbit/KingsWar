@@ -9,8 +9,8 @@ public class AddStatBuff : Buffs
     public int addAttack;
 
 
-    public void Create(TurnManager turnManager, int manaCost, int addHealth, int addAttack) {
-        base.Create(turnManager);
+    public void init(TurnManager turnManager, int manaCost, int addHealth, int addAttack) {
+        base.init(turnManager);
         this.manaCost = manaCost;
         this.addHealth = addHealth;
         this.addAttack = addAttack;

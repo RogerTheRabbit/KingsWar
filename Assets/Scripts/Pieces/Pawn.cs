@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Pawn : Piece
 {
-    public override void init(TurnManager turnManager, bool white)
+    public override void init(TurnManager turnManager, bool white, PieceManager pieceManager)
     {
-        base.init(turnManager, white);
+        base.init(turnManager, white, pieceManager);
         string resourcePath = null;
         string resourceName = null;
         if (white)
@@ -48,6 +48,9 @@ public class Pawn : Piece
             // We are not attacking
             // Check a single forward move
             if (y == - 1 && x == 0 && matrixboard[start.mBoardPosition.x, end.mBoardPosition.y].currentPiece == null) {
+                if (end.mBoardPosition.y == 7) {
+                    this.promote(start, end, matrixboard);
+                }
                 return true;
             }
             else if (x == 0) {
@@ -96,6 +99,13 @@ public class Pawn : Piece
             }
         }
         return false;
+    }
+
+    public void promote(Cell startCell, Cell endCell, Cell[,] matrixboard) {
+        matrixboard[startCell.mBoardPosition.x, startCell.mBoardPosition.y].currentPiece.Kill();
+        Piece queen = this.pieceManager.CreatePiece(typeof(Queen));
+        queen.init(turnManager, white, this.pieceManager);
+        queen.place(endCell);
     }
 
     // Start is called before the first frame update
