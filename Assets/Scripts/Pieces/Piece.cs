@@ -12,21 +12,20 @@ public abstract class Piece : EventTrigger
     public Cell startCell = null;
     public Cell endCell = null;
     public Cell targetCell = null;
-    public TurnManager turnmanager = null;
+    public TurnManager turnManager = null;
     public bool white = false;
     public bool killed = false;
 
-    public virtual void init(TurnManager turnmanager, bool white)
+    public virtual void init(TurnManager turnManager, bool white)
     {
-
         GetComponent<Image>().color = Color.clear;
 
-        this.turnmanager = turnmanager;
+        this.turnManager = turnManager;
         this.white = white;
 
         GameObject healthTextBox = new GameObject("health");
         healthTextBox.transform.SetParent(this.transform);
-        healthTextBox.transform.localPosition = new Vector3(50f, -42.9000015f, 0f);
+        healthTextBox.transform.localPosition = new Vector3(40f, -42.9000015f, 0f);
         Text healthText = healthTextBox.AddComponent<Text>();
         healthText.text = health.ToString();
         healthText.color = Color.white;
@@ -37,7 +36,7 @@ public abstract class Piece : EventTrigger
 
         GameObject attackTextBox = new GameObject("health");
         attackTextBox.transform.SetParent(this.transform);
-        attackTextBox.transform.localPosition = new Vector3(-36.5f, -42.9000015f, 0f);
+        attackTextBox.transform.localPosition = new Vector3(-26.5f, -42.9000015f, 0f);
         Text attackText = attackTextBox.AddComponent<Text>();
         attackText.text = health.ToString();
         attackText.color = Color.white;
@@ -122,7 +121,6 @@ public abstract class Piece : EventTrigger
 
     protected virtual void Move()
     {
-        Debug.Log(targetCell);
         // If there is an enemy piece, remove it
         targetCell.RemovePiece();
 
@@ -137,7 +135,7 @@ public abstract class Piece : EventTrigger
         transform.position = startCell.transform.position;
         targetCell = null;
 
-        turnmanager.hasMoved = false;
+        turnManager.hasMoved = false;
     }
 
     public virtual void Kill()
